@@ -1,5 +1,5 @@
 require 'sinatra'
 
 get '/' do
-  "Hello, afterburner.me"
+  erb :index
 end

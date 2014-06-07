@@ -1,0 +1,89 @@
+@media only screen and (-webkit-min-device-pixel-ratio: 2), 
+only screen and (min-device-pixel-ratio: 2) {
+    
+   .logo{
+		background: url(../images/retina/logo-white@2x.png) top left no-repeat;
+		background-size: 100%;
+	}
+	
+	.navbar-shrink .logo{
+		background: url(../images/retina/logo-dark@2x.png) top left no-repeat;
+		background-size: 100%;
+	}
+	
+	#contacts .mail_chimp_form_container input.button{
+		background: #1a1b1b url(../images/retina/send@2x.png) center center no-repeat;
+		background-size: 40%;
+	}
+	
+	.modal .close{
+		background: url(../images/retina/close@2x.png) top left no-repeat;
+		background-size: 100%;
+	}
+	
+	#contacts .other-contacts p, #contacts .other-contacts a {
+		font-weight: normal;
+	}
+	.lf{
+		background: url(../images/retina/logo-badge-white@2x.png) no-repeat center center;
+		background-size: 100%;
+		position: relative;
+		display: table;
+		margin: 0 auto;
+	}
+	
+	/* SOCIAL ICONS */
+	.socialdiv.colored .facebook{ background: url(../images/retina/facebook@2x.png) -4px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .twitter{ background: url(../images/retina/twitter@2x.png) -37px -1px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .forrst{ background: url(../images/retina/forrst@2x.png) -37px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .flickr{background: url(../images/retina/flickr@2x.png) -37px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px; }
+	.socialdiv.colored .linkedin{background: url(../images/retina/linkedin@2x.png) -38px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px; }
+	.socialdiv.colored .skype{ background: url(../images/retina/skype@2x.png) -37px -1px no-repeat; -webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px; }
+	.socialdiv.colored .google{ background: url(../images/retina/googleplus@2x.png) -36px -1px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .vimeo{ background: url(../images/retina/vimeo@2x.png) -38px -1px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .picasa{ background: url(../images/retina/picasa@2x.png) -37px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .deviantart{ background: url(../images/retina/deviantart@2x.png) -37px -2px no-repeat; -webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px; }
+	.socialdiv.colored .behance{ background: url(../images/retina/behance@2x.png) -37px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  } 
+	.socialdiv.colored .youtube{ background: url(../images/retina/youtube@2x.png) -37px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .rss{ background: url(../images/retina/rss@2x.png) -37px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .pinterest{ background: url(../images/retina/pinterest@2x.png) -38px -2px no-repeat; -webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px; }
+	.socialdiv.colored .stumble{ background: url(../images/retina/stumbleupon@2x.png) -37px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .delicious{ background: url(../images/retina/delicious@2x.png) -37px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .digg{ background: url(../images/retina/digg@2x.png) -37px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .instagram{ background: url(../images/retina/instagram@2x.png) -38px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  } 
+	.socialdiv.colored .myspace{ background: url(../images/retina/myspace@2x.png) -37px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .blogger{ background: url(../images/retina/blogger@2x.png) -37px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .wordpress{ background: url(../images/retina/wordpress@2x.png) -37px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .grooveshark{ background: url(../images/retina/grooveshark@2x.png) -38px -1px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .reddit{ background: url(../images/retina/reddit@2x.png) -40px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .soundcloud{ background: url(../images/retina/github@2x.png) -37px -2px no-repeat; -webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px; }
+	.socialdiv.colored .dribbble{ background: url(../images/retina/dribbble@2x.png) -38px -2px no-repeat; -webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px; }
+	
+	
+	/* SOCIAL ICONS: HOVER */
+	.socialdiv.colored .facebook:hover{ background: #fff url(../images/retina/facebook@2x.png) -37px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .twitter:hover{ background: #fff url(../images/retina/twitter@2x.png) -5px -1px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .forrst:hover{ background: #fff url(../images/retina/forrst@2x.png) -5px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .flickr:hover{background: #fff url(../images/retina/flickr@2x.png) -4px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px; }
+	.socialdiv.colored .linkedin:hover{background: #fff url(../images/retina/linkedin@2x.png) -5px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px; }
+	.socialdiv.colored .skype:hover{ background: #fff url(../images/retina/skype@2x.png) -4px -1px no-repeat; -webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px; }
+	.socialdiv.colored .google:hover{ background: #fff url(../images/retina/googleplus@2x.png) -5px -1px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .vimeo:hover{ background: #fff url(../images/retina/vimeo@2x.png) -5px -1px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .picasa:hover{ background: #fff url(../images/retina/picasa@2x.png) -5px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .deviantart:hover{ background: #fff url(../images/retina/deviantart@2x.png) -5px -2px no-repeat; -webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px; }
+	.socialdiv.colored .behance:hover{ background: #fff url(../images/retina/behance@2x.png) -5px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  } 
+	.socialdiv.colored .youtube:hover{ background: #fff url(../images/retina/youtube@2x.png) -5px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .rss:hover{ background: #fff url(../images/retina/rss@2x.png) -4px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .pinterest:hover{ background: #fff url(../images/retina/pinterest@2x.png) -4px -2px no-repeat; -webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px; }
+	.socialdiv.colored .stumble:hover{ background: #fff url(../images/retina/stumbleupon@2x.png) -5px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .delicious:hover{ background: #fff url(../images/retina/delicious@2x.png) -5px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .digg:hover{ background: #fff url(../images/retina/digg@2x.png) -5px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .instagram:hover{ background: #fff url(../images/retina/instagram@2x.png) -5px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  } 
+	.socialdiv.colored .myspace:hover{ background: #fff url(../images/retina/myspace@2x.png) -5px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .blogger:hover{ background: #fff url(../images/retina/blogger@2x.png) -5px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .wordpress:hover{ background: #fff url(../images/retina/wordpress@2x.png) -5px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .grooveshark:hover{ background: #fff url(../images/retina/grooveshark@2x.png) -4px -1px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .reddit:hover{ background: #fff url(../images/retina/reddit@2x.png) -5px -2px no-repeat;-webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px;  }
+	.socialdiv.colored .soundcloud:hover{ background: #fff url(../images/retina/github@2x.png) -4px -2px no-repeat; -webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px; }
+	.socialdiv.colored .dribbble:hover{ background: #fff url(../images/retina/dribbble@2x.png) -5px -2px no-repeat; -webkit-background-size:80px 40px; -moz-background-size:80px 40px; -o-background-size:80px 40px; background-size:80px 40px; }
+}
