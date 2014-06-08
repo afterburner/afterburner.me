@@ -755,6 +755,23 @@ section.nav-sections{position: static;}
 }
 .nopadding{padding: 0;}
 
+.section-third{
+  width: 33%;
+  display: inline-block;
+  vertical-align: top;
+  min-width: 250px;
+}
+.section-third.left{
+  padding-right: 15px;
+}
+.section-third.middle{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.section-third.right{
+  padding-left: 15px;
+}
+
 section i{font-size: 0.85em;}
 /*** Parallax Sections ***/
 .parallax{
