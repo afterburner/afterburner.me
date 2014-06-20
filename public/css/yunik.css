@@ -48,8 +48,17 @@ p{
 	text-rendering: optimizelegibility;
   	font-weight: 300;
   	color: #5C5C5C;
-  	font-size: 15px;
+  	font-size: 17px;
   	font-family: Helvetica,Arial,sans-serif;
+}
+.post-content ul{
+  	font-size: 17px;
+  	font-weight: 300;
+  	color: #5C5C5C;
+  	font-family: Helvetica,Arial,sans-serif;
+}
+.post-content ul li, .post-content ol li {
+  margin-left: 2em;
 }
 a{font-weight: 500;outline: none;}
 a:hover,a:focus {color: #4A5157;text-decoration: none;outline: none;}
@@ -1164,14 +1173,21 @@ a.team-profile{
 .journal .post-audio audio.ie{
 	height: 40px;
 }
+.single-title{
+  text-align: center;
+}
 .post-content, .about-author, #comments{
 	padding: 20px;
 	background: #fff;
-	display: inline-block;
+	display: block;
 	width: 100%;
+  max-width: 700px;
 	overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
 	border: 4px solid #F8F8F8;
-	text-align: center;
+  color: #5C5C5C;
 }
 .dark-section .post-content, .dark-section .about-author, .dark-section #comments, .black-section .post-content, .black-section .about-author, .black-section #comments{
 	background: #1C2024;border: 1px solid #21262B;
