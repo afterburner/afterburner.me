@@ -1,9 +1,28 @@
 require 'sinatra'
+require 'sinatra_auth_github'
 
-get '/' do
-  erb :index
-end
+module Afterburner
+  class Website < Sinatra::Application
+    enable :sessions
 
-get '/application' do
-  erb :application
+    register Sinatra::Auth::Github
+
+    set :github_options, {
+      :secret       => ENV['GITHUB_CLIENT_SECRET'],
+      :client_id    => ENV['GITHUB_CLIENT_ID'],
+      :callback_url => ENV['GITHUB_OAUTH_CALLBACK'],
+    }
+
+    get '/' do
+      erb :index
+    end
+
+    get '/application' do
+      erb :application
+    end
+
+    get '/application/challenge' do
+      authenticate!
+    end
+  end
 end
