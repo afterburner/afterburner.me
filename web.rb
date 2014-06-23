@@ -44,6 +44,10 @@ module Afterburner
       erb :index
     end
 
+    get '/application' do
+      redirect '/apply'
+    end
+
     get '/apply' do
       erb :apply
     end
