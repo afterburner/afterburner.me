@@ -50,6 +50,9 @@
           </p>
 
           <div class="application-radios">
+            <% if @repos.empty? %>
+              <div class="application-sublabel application-error"><i class="fa fa-times-circle-o"></i> Looks like you have no GitHub repos. Create one to store your challenge solution then come back here.</div>
+            <% end %>
             <% @repos.each do |r| %>
               <input type="radio" name="repo" value="<%= r[:full_name] %>"/>&nbsp;<%= r[:full_name] %><br/>
             <% end %>
