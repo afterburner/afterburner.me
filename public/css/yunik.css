@@ -1681,6 +1681,18 @@ h4.comments-title{
   font-weight: 300;
 }
 
+.application-error{
+  color: #cf0000;
+}
+
+.application-failed{
+  background-color: #cf0000;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+}
+
 /***************************************************************
 					 INTRO SITE LOADING
 ***************************************************************/

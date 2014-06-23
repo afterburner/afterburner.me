@@ -3,6 +3,10 @@
   <!-- BEGIN: ABOUT TITLE --> 
   <div class="section-title row text-center">
 
+    <% if form.failed? %>
+      <div class="application-failed"><i class="fa fa-times-circle-o"></i> There are problems with your application. Fix them and try again!</div>
+    <% end %>
+
     <h2>2014 FALL SESSION APPLICATION</h2>
     <div class="divider-grey"></div>
     <div class="sub-title">FALL SESSION: SEPT 6th &ndash; NOV 1st 2014<br>APPLICATIONS DUE JULY 15th</div>
@@ -23,19 +27,26 @@
         <!-- BEGIN POST CONTENT -->
         <div class="post-content" style="position: relative">
           <div style="font-size: .75em; position: absolute; right: 20px; text-align: right">Have a problem?<br/>Email <a href="mailto:application@afterburner.me" style="color: #8c8c8c">application@afterburner.me</a></div>
+          <form method="POST" action="/apply/2014-Q3">
           <div class="application-label">GitHub Username</div>
           <div class="application-value"><%= github_user.login %></div>
-          <div><a href="/auth/logout" style="font-size: .75em">Not you? Logout.</a></div>
+          <!-- <div><a href="/auth/logout" style="font-size: .75em">Not you? Logout.</a></div> -->
           <div class="spacing"></div>
           <p>
             <div class="application-label">Describe Your Project</div>
             <div class="application-sublabel">Afterburner mentors work with you on an iOS project of your choice. Tell us about the app you'd like help building.</div>
+            <% if form.failed_on?(:project_description) %>
+              <div class="application-sublabel application-error"><i class="fa fa-times-circle-o"></i> This is required.</div>
+            <% end %>
           </p>
           <textarea name="project_description" style="width: 100%" rows="6"></textarea>
           <div class="spacing"></div>
           <p>
             <div class="application-label">Challenge Solution</div>
-            <div class="application-sublabel">Select the repository containing your code for the challenge problem described below.</div>
+            <div class="application-sublabel">Select the repository containing your code for the challenge problem described <a href="#challenge">below</a>.</div>
+            <% if form.failed_on?(:repo) %>
+              <div class="application-sublabel application-error"><i class="fa fa-times-circle-o"></i> This is required.</div>
+            <% end %>
           </p>
 
           <div class="application-radios">
@@ -46,6 +57,9 @@
           <div class="spacing"></div>
           <p>
             <div class="application-label">T-Shirt Size</div>
+            <% if form.failed_on?(:t_shirt_size) %>
+              <div class="application-sublabel application-error"><i class="fa fa-times-circle-o"></i> This is required.</div>
+            <% end %>
           </p>
 
           <div class="application-radios">
@@ -55,10 +69,12 @@
           </div>
 
           <div class="text-center">
-            <a class="des-button-dark des-button-dark-1 des-button-dark-1d" href="/apply/2014-Q3"><span>Apply</span></a>
+            <button class="des-button-dark des-button-dark-1 des-button-dark-1d" onclick="form.submit()"><span>Apply</span></button>
           </div>
+        </form>
 
-          <div class="divider-grey"></div>
+        <div class="divider-grey"></div>
+          <a name="challenge"></a>
           <div class="sub-title" style="text-align: center">Movie Suggestion Challenge</div>
           <div class="space"></div>
           <p>Build an iOS app using the Rotten

@@ -12,6 +12,10 @@ GEM
     coderay (1.1.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    formkeeper (0.0.13)
+      hpricot
+      rack
+    hpricot (0.8.6)
     i18n (0.6.9)
     method_source (0.8.2)
     mongoid (3.1.6)
@@ -39,6 +43,11 @@ GEM
     sinatra (1.1.0)
       rack (~> 1.1)
       tilt (~> 1.1)
+    sinatra-formkeeper (0.0.7)
+      formkeeper (~> 0.0.12)
+      hpricot
+      rack
+      sinatra
     sinatra_auth_github (1.0.0)
       sinatra (~> 1.0)
       warden-github (~> 1.0)
@@ -59,4 +68,5 @@ DEPENDENCIES
   pry
   pry-remote
   sinatra (= 1.1.0)
+  sinatra-formkeeper
   sinatra_auth_github

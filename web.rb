@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sinatra_auth_github'
 require 'uri'
 require 'mongoid'
+require 'sinatra/formkeeper'
 
 Mongoid.load!("mongoid.yml")
 
@@ -19,6 +20,9 @@ module Afterburner
   class Submission
     include Mongoid::Document
     field :github_login, type: String
+    field :repo, type: String
+    field :project_description, type: String
+    field :t_shirt_size, type: String
     embeds_one :session
     embeds_one :challenge
   end
@@ -27,6 +31,7 @@ module Afterburner
     enable :sessions
 
     register Sinatra::Auth::Github
+    register Sinatra::FormKeeper
 
     set :github_options, {
       :secret       => ENV['GITHUB_CLIENT_SECRET'],
