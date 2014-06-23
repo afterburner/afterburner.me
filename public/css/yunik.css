@@ -1651,6 +1651,35 @@ h4.comments-title{
 #contacts .b-text a{
 	color: #505050;
 }
+/***************************************************************
+					 APPLICATION FORM
+***************************************************************/
+
+.application-label{
+  font-size: 1.5em;
+  font-weight: 300;
+}
+
+.application-value{
+  font-size: 17px;
+  font-weight: 300;
+}
+
+.application-sublabel{
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.application textarea{
+  font-size: 17px;
+  font-weight: 300;
+}
+
+.application-radios{
+  margin-left: 25px;
+  font-size: 17px;
+  font-weight: 300;
+}
 
 /***************************************************************
 					 INTRO SITE LOADING

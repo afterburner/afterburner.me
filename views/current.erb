@@ -3,8 +3,9 @@
   <!-- BEGIN: ABOUT TITLE --> 
   <div class="section-title row text-center">
 
-    <h2>APPLICATION</h2>
+    <h2>2014 FALL SESSION APPLICATION</h2>
     <div class="divider-grey"></div>
+    <div class="sub-title">FALL SESSION: SEPT 6th &ndash; NOV 1st 2014<br>APPLICATIONS DUE JULY 15th</div>
   </div>
   <!-- END -->
 </section>
@@ -18,16 +19,45 @@
     <div class="col-md-12">	
 
       <!-- BEGIN BLOG POST -->
-      <div class="blog-post isotope-item">
+      <div class="blog-post isotope-item application">
         <!-- BEGIN POST CONTENT -->
-        <div class="post-content">
-          <p>Thanks for your interest in Afterburner! Here's how you can apply
-          for our Fall 2014 pilot:</p>
-          <ul>
-            <li>Come up with an iOS project you want help with. It should be relatively sizable, something that would take at least a few thousand lines of code.</li>
-            <li>Complete the challenge described below and store your code in a GitHub repo.</li>
-            <li>Send an email to <a href="mailto:application@afterburner.me">application@afterburner.me</a> with your name, project description and a link to your GitHub repo.</li>
-          </ul>
+        <div class="post-content" style="position: relative">
+          <div style="font-size: .75em; position: absolute; right: 20px; text-align: right">Have a problem?<br/>Email <a href="mailto:application@afterburner.me" style="color: #8c8c8c">application@afterburner.me</a></div>
+          <div class="application-label">GitHub Username</div>
+          <div class="application-value"><%= github_user.login %></div>
+          <div><a href="/auth/logout" style="font-size: .75em">Not you? Logout.</a></div>
+          <div class="spacing"></div>
+          <p>
+            <div class="application-label">Describe Your Project</div>
+            <div class="application-sublabel">Afterburner mentors work with you on an iOS project of your choice. Tell us about the app you'd like help building.</div>
+          </p>
+          <textarea name="project_description" style="width: 100%" rows="6"></textarea>
+          <div class="spacing"></div>
+          <p>
+            <div class="application-label">Challenge Solution</div>
+            <div class="application-sublabel">Select the repository containing your code for the challenge problem described below.</div>
+          </p>
+
+          <div class="application-radios">
+            <% @repos.each do |r| %>
+              <input type="radio" name="repo" value="<%= r[:full_name] %>"/>&nbsp;<%= r[:full_name] %><br/>
+            <% end %>
+          </div>
+          <div class="spacing"></div>
+          <p>
+            <div class="application-label">T-Shirt Size</div>
+          </p>
+
+          <div class="application-radios">
+            <% ["S", "M", "L", "XL", "XXL"].each do |size| %>
+              <input type="radio" name="t_shirt_size" value="<%= size %>"/>&nbsp;<%= size %><br/>
+            <% end %>
+          </div>
+
+          <div class="text-center">
+            <a class="des-button-dark des-button-dark-1 des-button-dark-1d" href="/apply/2014-Q3"><span>Apply</span></a>
+          </div>
+
           <div class="divider-grey"></div>
           <div class="sub-title" style="text-align: center">Movie Suggestion Challenge</div>
           <div class="space"></div>

@@ -46,7 +46,7 @@ jQuery(document).ready(function($){
 
 	/* import the animate.css if the browser is not mobile device */
 	if (!isMobile.any()){
-		$('head').append('<link rel="stylesheet" href="css/animate.css" type="text/css" />');
+		$('head').append('<link rel="stylesheet" href="/css/animate.css" type="text/css" />');
 	} else {
 		$('#option_wrapper').add($('.option_btn')).remove();
 	}
