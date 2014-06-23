@@ -23,6 +23,7 @@ module Afterburner
     field :repo, type: String
     field :project_description, type: String
     field :t_shirt_size, type: String
+    field :created_at, type: Time, default: ->{ Time.now }
     embeds_one :session
     embeds_one :challenge
   end
