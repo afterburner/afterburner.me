@@ -66,9 +66,9 @@
 		       	
 		       	<!-- BEGIN: MENU -->       
 		        <div class="navbar-collapse collapse">
-			        <ul class="nav navbar-nav navbar-right">
-                <li><a class="nav-to" href="http://www.afterburner.me/#home">HOME</a></li>
-                <li><a class="nav-to" href="http://www.afterburner.me/#about">ABOUT US</a></li>
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a class="<%= 'nav-to' if request.path_info == '/' %>" href="http://www.afterburner.me/#home">HOME</a></li>
+                <li><a class="<%= 'nav-to' if request.path_info == '/' %>" href="http://www.afterburner.me/#about">ABOUT US</a></li>
                 <li><a class="nav-to" href="/apply">APPLY</a></li>
                 <!-- <li><a class="nav-to" href="/#getinvolved">GET INVOLVED</a></li> -->
               </ul>
