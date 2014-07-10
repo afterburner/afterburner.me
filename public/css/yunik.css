@@ -1665,7 +1665,7 @@ h4.comments-title{
   font-weight: 300;
 }
 
-.application-sublabel{
+.application-sublabel, .application-sublabel *{
   font-size: 15px;
   font-weight: 300;
 }
