@@ -92,6 +92,13 @@ module Afterburner
       erb :index
     end
 
+    get '/profile/:github_login' do
+      authenticate!
+
+      @user = User.where(github_login: params[:github_login]).first
+      erb :profile
+    end
+
     def current_application
       @repos = github_user.api.repositories
 

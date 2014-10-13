@@ -1,0 +1,28 @@
+<div style="height:80px; width: 100%; background-color: #2c2c2c; position: absolute;"></div>
+<section class="pagetitle">
+  <!-- BEGIN: ABOUT TITLE --> 
+  <div class="section-title row text-center">
+
+    <h2><%= @user.name %></h2>
+    <%= @user.github_login %>
+    <div class="divider-grey"></div>
+
+    <h3>Medals</h3>
+    <% for m in awarded_medals do %>
+      <div>
+        <img src="/images/medals/<%= if m[:count] > 0 
+                        m[:medal].image
+                      else
+                        m[:medal].image_disabled
+                      end %>"/>
+        <div><%= m[:medal].name %> <span><%= ("&#215;" + m[:count].to_s) if m[:count] > 0 %></span></div>
+      <% end %>
+
+    <p>T-Shirt Size: <%= @user.t_shirt_size %></p>
+  </div>
+
+  <div style="height: 90px">&nbsp;</div>
+  <!-- END -->
+</section>
+
+
