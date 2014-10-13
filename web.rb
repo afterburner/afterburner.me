@@ -127,7 +127,7 @@ module Afterburner
 
     get '/auth/logout' do
       logout!
-      redirect '/apply'
+      redirect '/'
     end
 
     get '/apply/thanks' do
