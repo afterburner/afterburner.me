@@ -171,5 +171,33 @@ module Afterburner
     get '/apply/thanks' do
       erb :apply_thanks
     end
+
+    def public_medals
+      all_m = Medal.where(secret: false).documents
+      return all_m.sort { |a,b| a.sort_key < b.sort_key }
+    end
+
+    # returns [ { :medal => Medal, :count => Integer } ]
+    def awarded_medals
+      awarded = {}
+      for d in @user.decorations
+        n = d.medal.id
+        if awarded[n].nil?
+          awarded[n] = {}
+          awarded[n][:medal] = d.medal
+          awarded[n][:count] = 1
+        else
+          awarded[n][:count] = awarded[n][:count] + 1
+        end
+      end
+      for m in public_medals
+        if awarded[m.id].nil?
+          awarded[m.id] = {}
+          awarded[m.id][:medal] = m
+          awarded[m.id][:count] = 0
+        end
+      end
+      return awarded.values.sort { |a,b| a.sort_key < b.sort_key }
+    end
   end
 end
