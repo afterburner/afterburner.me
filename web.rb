@@ -92,6 +92,37 @@ module Afterburner
       erb :index
     end
 
+    get '/signup' do
+      authenticate!
+      erb :signup
+    end
+
+    post '/signup' do
+      authenticate!
+
+      # Check for a user with this github login.
+      u = User.where(github_login: github_user.login).first
+      if u
+        redirect '/profile/' + github_user.login
+      end
+
+      form do
+        field :name, :present => true
+        field :email, :present => true, :email => true
+      end
+      if form.failed?
+        erb :signup
+      else
+        u = User.create(github_login: github_user.login,
+                        name: params[:name],
+                        email: params[:email],
+                        t_shirt_size: params[:t_shirt_size],
+                        type: :cadet)
+
+        redirect '/profile/' + github_user.login
+      end
+    end
+
     get '/profile/:github_login' do
       authenticate!
 

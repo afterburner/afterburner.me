@@ -1,0 +1,77 @@
+<div style="height:80px; width: 100%; background-color: #2c2c2c; position: absolute;"></div>
+<section class="pagetitle">
+  <!-- BEGIN: ABOUT TITLE --> 
+  <div class="section-title row text-center">
+
+    <% if form.failed? %>
+      <div class="application-failed"><i class="fa fa-times-circle-o"></i> There are problems with your sign up form. Fix them and try again!</div>
+    <% end %>
+
+    <h2>SIGN UP</h2>
+    <div class="divider-grey"></div>
+    <div class="sub-title">CREATE AN AFTERBURNER ACCOUNT</div>
+  </div>
+  <!-- END -->
+</section>
+
+<!-- BEGIN BLOG 3 COLUMNS -->
+<section id="blog" class="blog-single light-section nopadding">
+  <!-- BEGIN CONTAINER -->
+  <div class="container single">
+
+    <!-- BEGIN SINGLE CONTENT COLUM -->
+    <div class="col-md-12">	
+
+      <!-- BEGIN BLOG POST -->
+      <div class="blog-post isotope-item application">
+        <!-- BEGIN POST CONTENT -->
+        <div class="post-content" style="position: relative">
+          <div style="font-size: .75em; position: absolute; right: 20px; text-align: right">Have a problem?<br/>Email <a href="mailto:support@afterburner.me" style="color: #8c8c8c">support@afterburner.me</a></div>
+          <form method="POST" action="/signup">
+          <div class="application-label">GitHub Username</div>
+          <div class="application-value"><%= github_user.login %></div>
+          <!-- <div><a href="/auth/logout" style="font-size: .75em">Not you? Logout.</a></div> -->
+          <div class="spacing"></div>
+          <p>
+            <div class="application-label">Name</div>
+            <% if form.failed_on?(:name) %>
+              <div class="application-sublabel application-error"><i class="fa fa-times-circle-o"></i> This is required.</div>
+            <% end %>
+          </p>
+          <input type="text" name="name" style="width: 100%" value="<%= github_user.name %>"></input>
+          <div class="spacing"></div>
+          <p>
+            <div class="application-label">Email</div>
+            <% if form.failed_on?(:email) %>
+              <div class="application-sublabel application-error"><i class="fa fa-times-circle-o"></i> This is required.</div>
+            <% end %>
+          </p>
+          <input type="text" name="email" style="width: 100%" value="<%= github_user.email %>"></input>
+          <div class="spacing"></div>
+          <p>
+            <div class="application-label">T-Shirt Size</div>
+            <% if form.failed_on?(:t_shirt_size) %>
+              <div class="application-sublabel application-error"><i class="fa fa-times-circle-o"></i> This is required.</div>
+            <% end %>
+          </p>
+
+          <div class="application-radios">
+            <% ["S", "M", "L", "XL", "XXL"].each do |size| %>
+              <input type="radio" name="t_shirt_size" value="<%= size %>"/>&nbsp;<%= size %><br/>
+            <% end %>
+          </div>
+
+          <div class="text-center">
+            <button class="des-button-dark des-button-dark-1 des-button-dark-1d" onclick="form.submit()"><span>Create Account</span></button>
+          </div>
+        </form>
+
+        </div>
+        <!-- END POST CONENT -->
+      </div>
+      <!-- END BLOG POST -->
+    </div>	
+    <!-- END SINGLE CONTENT COLUMN -->
+  </div>	
+  <!-- END CONTAINER -->
+</section> 
