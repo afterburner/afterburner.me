@@ -172,6 +172,24 @@ module Afterburner
       erb :apply_thanks
     end
 
+    get '/medals/award/:github_login/:medal_id' do
+      authenticate!
+
+      @user = User.where(github_login: github_user.login).first
+      unless @user.permissions.where(slug: "award").exists?
+        redirect '/'
+      end
+
+      m = Medal.where(id: params[:medal_id]).first 
+      u = User.where(github_login: params[:github_login]).first
+
+      # TODO: error check
+      u.decorations.create(medal: m,
+                           user: u)
+
+      redirect '/profile/' + params[:github_login]
+    end
+
     def public_medals
       all_m = Medal.where(secret: false).documents
       return all_m.sort { |a,b| a.sort_key < b.sort_key }
