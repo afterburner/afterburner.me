@@ -187,7 +187,7 @@ module Afterburner
       end
     end
 
-    get '/medals/award/:github_login/:medal_id' do
+    post '/medals/decorate/:github_login/:medal_id' do
       require!("medals_award")
 
       m = Medal.where(id: params[:medal_id]).first
