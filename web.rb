@@ -181,7 +181,7 @@ module Afterburner
       erb :decorate
     end
 
-    post '/admin/permissions'
+    post '/admin/permissions' do
       require!("permissions_create")
 
       form do
@@ -209,7 +209,7 @@ module Afterburner
       redirect '/profile/' + params[:github_login]
     end
 
-    get '/admin/users'
+    get '/admin/users' do
       require!("users_view")
 
       @users = User.all
@@ -217,7 +217,7 @@ module Afterburner
       erb :admin_users
     end
 
-    post '/admin/users'
+    post '/admin/users' do
       require!("users_create")
 
       form do
@@ -230,7 +230,7 @@ module Afterburner
       if form.failed?
         redirect '/admin/users'
       else
-        u = User.create(github_login: params[:github_login]
+        u = User.create(github_login: params[:github_login],
                         name: params[:name],
                         email: params[:email],
                         t_shirt_size: params[:t_shirt_size],
