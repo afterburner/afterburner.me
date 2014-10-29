@@ -93,12 +93,12 @@ module Afterburner
     end
 
     get '/signup' do
-      authenticate!
+      require!
       erb :signup
     end
 
     post '/signup' do
-      authenticate!
+      require!
 
       # Check for a user with this github login.
       u = User.where(github_login: github_user.login).first
@@ -124,7 +124,7 @@ module Afterburner
     end
 
     get '/profile/:github_login' do
-      authenticate!
+      require!
 
       @user = User.where(github_login: params[:github_login]).first
       erb :profile
@@ -137,7 +137,7 @@ module Afterburner
     end
 
     post '/apply/:session_slug' do
-      authenticate!
+      require!
 
       # Validate the session they're applying for.
       s = Session.where(slug: params[:session_slug]).first
@@ -173,12 +173,7 @@ module Afterburner
     end
 
     get '/medals/award/:github_login/:medal_id' do
-      authenticate!
-
-      @user = User.where(github_login: github_user.login).first
-      unless @user.permissions.where(slug: "award").exists?
-        redirect '/'
-      end
+      require!("medals_award")
 
       m = Medal.where(id: params[:medal_id]).first
       u = User.where(github_login: params[:github_login]).first
@@ -191,12 +186,7 @@ module Afterburner
     end
 
     get '/admin/users'
-      authenticate!
-
-      @user = User.where(github_login: github_user.login).first
-      unless @user.permissions.where(slug: "users_view").exists?
-        redirect '/'
-      end
+      require!("users_view")
 
       @users = User.all
       @permissions = Permission.all
@@ -204,12 +194,7 @@ module Afterburner
     end
 
     post '/admin/users'
-      authenticate!
-
-      @user = User.where(github_login: github_user.login).first
-      unless @user.permissions.where(slug: "users_create").exists?
-        redirect '/'
-      end
+      require!("users_create")
 
       form do
         field :name, :present => true
