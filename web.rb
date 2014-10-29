@@ -232,6 +232,21 @@ module Afterburner
       end
     end
 
+    def require!(*args)
+      authenticate!
+
+      @user = User.where(github_login: github_user.login).first
+      unless @user
+        redirect '/'
+      end
+
+      for a in args do
+        unless @user.permissions.where(slug: a).exists?
+          redirect '/'
+        end
+      end
+    end
+
     def public_medals
       all_m = Medal.where(secret: false).documents
       return all_m.sort { |a,b| a.sort_key < b.sort_key }
