@@ -173,12 +173,7 @@ module Afterburner
     end
 
     get '/medals/decorate' do
-      authenticate!
-
-      @user = User.where(github_login: github_user.login).first
-      unless @user.permissions.where(slug: "award").exists?
-        redirect '/'
-      end
+      require!("medals_decorate")
 
       @users = User.all
       @medals = Medal.all
@@ -202,7 +197,7 @@ module Afterburner
     end
 
     post '/medals/decorate/:github_login/:medal_id' do
-      require!("medals_award")
+      require!("medals_decorate")
 
       m = Medal.where(id: params[:medal_id]).first
       u = User.where(github_login: params[:github_login]).first
