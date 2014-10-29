@@ -172,6 +172,21 @@ module Afterburner
       erb :apply_thanks
     end
 
+    post '/admin/permissions'
+      require!("permissions_create")
+
+      form do
+        field :slug, :present => true
+        field :name, :present => true
+      end
+      if form.failed?
+        redirect '/admin/permissions'
+      else
+        Permission.create(:slug => params[:slug],
+                          :name => params[:name])
+      end
+    end
+
     get '/medals/award/:github_login/:medal_id' do
       require!("medals_award")
 
