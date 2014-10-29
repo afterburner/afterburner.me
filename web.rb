@@ -172,6 +172,20 @@ module Afterburner
       erb :apply_thanks
     end
 
+    get '/medals/decorate' do
+      authenticate!
+
+      @user = User.where(github_login: github_user.login).first
+      unless @user.permissions.where(slug: "award").exists?
+        redirect '/'
+      end
+
+      @users = User.all
+      @medals = Medal.all
+
+      erb :decorate
+    end
+
     post '/admin/permissions'
       require!("permissions_create")
 
