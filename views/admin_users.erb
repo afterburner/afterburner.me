@@ -1,0 +1,74 @@
+<div style="height:80px; width: 100%; background-color: #2c2c2c; position: absolute;"></div>
+<section class="pagetitle">
+  <!-- BEGIN: TITLE -->
+  <div class="section-title row text-center">
+
+    <% if form.failed? %>
+      <div class="application-failed"><i class="fa fa-times-circle-o"></i> There are problems. Fix them and try again!</div>
+    <% end %>
+
+    <h2>USERS</h2>
+    <div class="divider-grey"></div>
+  </div>
+  <!-- END -->
+</section>
+
+<!-- BEGIN BLOG 3 COLUMNS -->
+<section id="blog" class="blog-single light-section nopadding">
+  <!-- BEGIN CONTAINER -->
+  <div class="container single">
+
+    <!-- BEGIN SINGLE CONTENT COLUM -->
+    <div class="col-md-12">
+
+      <!-- BEGIN BLOG POST -->
+      <div class="blog-post isotope-item application">
+        <!-- BEGIN POST CONTENT -->
+
+        <div class="post-content" style="position: relative">
+        <form method="POST" action="/admin/user">
+          <label>GitHub Login</label>
+          <input name="github_login">
+          <label>Name</label>
+          <input name="name">
+          <label>Email</label>
+          <input name="email">
+          <label>Type</label>
+          <input type="radio" name="type" value="cadet"> Cadet
+          <input type="radio" name="type" value="mentor"> Mentor
+          <input type="radio" name="type" value="admin"> Admin
+          <label>Permissions</label>
+          <% for p in @permissions do %>
+            <input type="radio" name="permissions" value="<%= p.slug %>"> <%= p.name %>
+          <% end %>
+          <label>T-Shirt Size</label>
+          <% ["S", "M", "L" ,"XL", "XXL"].each do |size| %>
+            <input type="radio" name="t_shirt_size" value="<%= size %>"/>&nbsp;<%= size %><br/>
+          <% end %>
+
+          <div class="text-center">
+            <button class="des-button-dark des-button-dark-1 des-button-dark-1d" onclick="form.submit()"><span>Apply</span></button>
+          </div>
+
+        </form>
+
+        <table>
+          <% for u in @users %>
+            <tr>
+              <td><%= u.name %></td>
+              <td><%= u.github_login %></td>
+              <td><%= u.email %></td>
+              <td><%= u.type %></td>
+            </tr>
+          <% end %>
+        </table>
+
+        </div>
+        <!-- END POST CONENT -->
+      </div>
+      <!-- END BLOG POST -->
+    </div>
+    <!-- END SINGLE CONTENT COLUMN -->
+  </div>
+  <!-- END CONTAINER -->
+</section>

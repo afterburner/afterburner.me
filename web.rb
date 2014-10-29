@@ -11,7 +11,7 @@ module Afterburner
     include Mongoid::Document
     field :slug, type: String
     field :name, type: String
-  end 
+  end
 
   class User
     include Mongoid::Document
@@ -66,7 +66,7 @@ module Afterburner
     belongs_to :session
   end
 
-  class Application 
+  class Application
     include Mongoid::Document
     include Mongoid::Timestamps
     field :github_login, type: String
@@ -180,7 +180,7 @@ module Afterburner
         redirect '/'
       end
 
-      m = Medal.where(id: params[:medal_id]).first 
+      m = Medal.where(id: params[:medal_id]).first
       u = User.where(github_login: params[:github_login]).first
 
       # TODO: error check
@@ -188,6 +188,48 @@ module Afterburner
                            user: u)
 
       redirect '/profile/' + params[:github_login]
+    end
+
+    get '/admin/users'
+      authenticate!
+
+      @user = User.where(github_login: github_user.login).first
+      unless @user.permissions.where(slug: "users_view").exists?
+        redirect '/'
+      end
+
+      @users = User.all
+      @permissions = Permission.all
+      erb :admin_users
+    end
+
+    post '/admin/users'
+      authenticate!
+
+      @user = User.where(github_login: github_user.login).first
+      unless @user.permissions.where(slug: "users_create").exists?
+        redirect '/'
+      end
+
+      form do
+        field :name, :present => true
+        field :github_login, :present => true
+        field :email, :present => true
+        field :t_shirt_size, :present => true
+        field :type, :present => true
+      end
+      if form.failed?
+        redirect '/admin/users'
+      else
+        u = User.create(github_login: params[:github_login]
+                        name: params[:name],
+                        email: params[:email],
+                        t_shirt_size: params[:t_shirt_size],
+                        type: params[:type],
+                        permissions: params[:permissions])
+
+        redirect '/admin/users'
+      end
     end
 
     def public_medals
