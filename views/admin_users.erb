@@ -39,7 +39,7 @@
           <input type="radio" name="type" value="admin"> Admin
           <label>Permissions</label>
           <% for p in @permissions do %>
-            <input type="radio" name="permissions" value="<%= p.slug %>"> <%= p.name %>
+            <input type="checkbox" name="permissions[]" value="<%= p.slug %>"> <%= p.name %>
           <% end %>
           <label>T-Shirt Size</label>
           <% ["S", "M", "L" ,"XL", "XXL"].each do |size| %>
@@ -56,9 +56,14 @@
           <% for u in @users %>
             <tr>
               <td><%= u.name %></td>
+              <td><%= u.type %></td>
               <td><%= u.github_login %></td>
               <td><%= u.email %></td>
-              <td><%= u.type %></td>
+              <td>
+                <% for p in u.permissions %>
+                  <%= p.name %>,&nbsp;
+                <% end %>
+                </td>
             </tr>
           <% end %>
         </table>
