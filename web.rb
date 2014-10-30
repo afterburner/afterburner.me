@@ -5,6 +5,7 @@ require 'mongoid'
 require 'sinatra/formkeeper'
 
 require_relative 'afterburner/users'
+require_relative 'afterburner/medals'
 
 Mongoid.load!("mongoid.yml")
 
@@ -178,7 +179,7 @@ module Afterburner
       require!("medals_decorate")
 
       @users = Afterburner::Users.all
-      @medals = Medal.all
+      @medals = Afterburner::Medals.all
 
       erb :decorate
     end
@@ -201,7 +202,7 @@ module Afterburner
     post '/medals/decorate/:github_login/:medal_id' do
       require!("medals_decorate")
 
-      m = Medal.where(id: params[:medal_id]).first
+      m = Afterburner::Medals.find(params[:medal_id])
       u = Afterburner::Users.find(params[:github_login])
 
       # TODO: error check
@@ -258,32 +259,5 @@ module Afterburner
       end
     end
 
-    def public_medals
-      all_m = Medal.where(secret: false).documents
-      return all_m.sort { |a,b| a.sort_key < b.sort_key }
-    end
-
-    # returns [ { :medal => Medal, :count => Integer } ]
-    def awarded_medals
-      awarded = {}
-      for d in @user.decorations
-        n = d.medal.id
-        if awarded[n].nil?
-          awarded[n] = {}
-          awarded[n][:medal] = d.medal
-          awarded[n][:count] = 1
-        else
-          awarded[n][:count] = awarded[n][:count] + 1
-        end
-      end
-      for m in public_medals
-        if awarded[m.id].nil?
-          awarded[m.id] = {}
-          awarded[m.id][:medal] = m
-          awarded[m.id][:count] = 0
-        end
-      end
-      return awarded.values.sort { |a,b| a.sort_key < b.sort_key }
-    end
   end
 end
