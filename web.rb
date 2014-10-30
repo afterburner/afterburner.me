@@ -4,6 +4,8 @@ require 'uri'
 require 'mongoid'
 require 'sinatra/formkeeper'
 
+require_relative 'afterburner/users'
+
 Mongoid.load!("mongoid.yml")
 
 module Afterburner
@@ -101,7 +103,7 @@ module Afterburner
       require!
 
       # Check for a user with this github login.
-      u = User.where(github_login: github_user.login).first
+      u = Afterburner::Users.find(github_user.login)
       if u
         redirect '/profile/' + github_user.login
       end
@@ -113,11 +115,11 @@ module Afterburner
       if form.failed?
         erb :signup
       else
-        u = User.create(github_login: github_user.login,
-                        name: params[:name],
-                        email: params[:email],
-                        t_shirt_size: params[:t_shirt_size],
-                        type: :cadet)
+        u = Afterburner::Users.create(github_login: github_user.login,
+                                      name: params[:name],
+                                      email: params[:email],
+                                      t_shirt_size: params[:t_shirt_size],
+                                      type: :cadet)
 
         redirect '/profile/' + github_user.login
       end
@@ -126,7 +128,7 @@ module Afterburner
     get '/profile/:github_login' do
       require!
 
-      @user = User.where(github_login: params[:github_login]).first
+      @user = Afterburner::Users.find(params[:github_login])
       erb :profile
     end
 
@@ -175,7 +177,7 @@ module Afterburner
     get '/medals/decorate' do
       require!("medals_decorate")
 
-      @users = User.all
+      @users = Afterburner::Users.all
       @medals = Medal.all
 
       erb :decorate
@@ -200,7 +202,7 @@ module Afterburner
       require!("medals_decorate")
 
       m = Medal.where(id: params[:medal_id]).first
-      u = User.where(github_login: params[:github_login]).first
+      u = Afterburner::Users.find(params[:github_login])
 
       # TODO: error check
       u.decorations.create(medal: m,
@@ -212,7 +214,7 @@ module Afterburner
     get '/admin/users' do
       require!("users_view")
 
-      @users = User.all
+      @users = Afterburner::Users.all
       @permissions = Permission.all
       erb :admin_users
     end
@@ -230,12 +232,12 @@ module Afterburner
       if form.failed?
         redirect '/admin/users'
       else
-        u = User.create(github_login: params[:github_login],
-                        name: params[:name],
-                        email: params[:email],
-                        t_shirt_size: params[:t_shirt_size],
-                        type: params[:type],
-                        permissions: params[:permissions])
+        u = Afterburner::Users.create(github_login: params[:github_login],
+                                      name: params[:name],
+                                      email: params[:email],
+                                      t_shirt_size: params[:t_shirt_size],
+                                      type: params[:type],
+                                      permissions: params[:permissions])
 
         redirect '/admin/users'
       end
@@ -244,7 +246,7 @@ module Afterburner
     def require!(*args)
       authenticate!
 
-      @user = User.where(github_login: github_user.login).first
+      @user = Afterburner::Users.find(github_user.login)
       unless @user
         redirect '/'
       end
