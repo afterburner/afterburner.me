@@ -59,9 +59,10 @@ module Afterburner
     end
 
     get '/profile/:github_login' do
-      require!
-
-      @user = Afterburner::Users.find(params[:github_login])
+      @profile_user = Afterburner::Users.find(params[:github_login])
+      unless @profile_user
+        redirect '/'
+      end
       erb :profile
     end
 
