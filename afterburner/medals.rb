@@ -2,7 +2,7 @@ module Afterburner
   class Medals
 
     def self.find(id)
-      d.where(id: id).first
+      Medal.where(id: id).first
     end
 
     def self.all
