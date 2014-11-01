@@ -27,27 +27,27 @@
 
         <div class="post-content" style="position: relative">
         <form method="POST" action="/admin/user">
-          <label>GitHub Login</label>
-          <input name="github_login">
-          <label>Name</label>
-          <input name="name">
-          <label>Email</label>
-          <input name="email">
-          <label>Type</label>
-          <input type="radio" name="type" value="cadet"> Cadet
-          <input type="radio" name="type" value="mentor"> Mentor
-          <input type="radio" name="type" value="admin"> Admin
-          <label>Permissions</label>
-          <% for p in @permissions do %>
-            <input type="checkbox" name="permissions[]" value="<%= p.slug %>"> <%= p.name %>
+          <label>GitHub Login</label><br>
+          <input name="github_login"><br>
+          <label>Name</label><br>
+          <input name="name"><br>
+          <label>Email</label><br>
+          <input name="email"><br>
+          <label>Type</label><br>
+          <input type="radio" name="type" value="cadet"> Cadet<br>
+          <input type="radio" name="type" value="mentor"> Mentor<br>
+          <input type="radio" name="type" value="admin"> Admin<br>
+          <label>Permissions</label><br>
+          <% for perm in @permissions do %>
+            <input type="checkbox" name="permissions[]" value="<%= perm.slug %>"> <%= perm.name %><br>
           <% end %>
-          <label>T-Shirt Size</label>
+          <label>T-Shirt Size</label><br>
           <% ["S", "M", "L" ,"XL", "XXL"].each do |size| %>
             <input type="radio" name="t_shirt_size" value="<%= size %>"/>&nbsp;<%= size %><br/>
           <% end %>
 
           <div class="text-center">
-            <button class="des-button-dark des-button-dark-1 des-button-dark-1d" onclick="form.submit()"><span>Apply</span></button>
+            <button class="des-button-dark des-button-dark-1 des-button-dark-1d" onclick="form.submit()"><span>Create User</span></button>
           </div>
 
         </form>

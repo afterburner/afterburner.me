@@ -153,7 +153,7 @@ module Afterburner
       erb :admin_users
     end
 
-    post '/admin/users' do
+    post '/admin/user' do
       require!("users_create")
 
       form do
@@ -166,12 +166,16 @@ module Afterburner
       if form.failed?
         redirect '/admin/users'
       else
+        perms = []
+        for perm_slug in params[:permissions] do
+          perms << Permission.where(slug: perm_slug).first
+        end
         u = Afterburner::Users.create(github_login: params[:github_login],
                                       name: params[:name],
                                       email: params[:email],
                                       t_shirt_size: params[:t_shirt_size],
                                       type: params[:type],
-                                      permissions: params[:permissions])
+                                      permissions: perms)
 
         redirect '/admin/users'
       end
