@@ -34,7 +34,7 @@ module Afterburner
           awarded[m.id][:count] = 0
         end
       end
-      return awarded.values.sort { |a,b| a.sort_key < b.sort_key }
+      return awarded.values.sort { |a,b| a[:medal].sort_key <=> b[:medal].sort_key }
     end
 
   end
