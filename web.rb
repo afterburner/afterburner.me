@@ -117,6 +117,28 @@ module Afterburner
       erb :decorate
     end
 
+    post '/medals/decorate' do
+      require!("medals_decorate")
+
+      form do
+        field :github_login, :present => true
+        field :medal_id, :present => true
+      end
+
+      u = Afterburner::Users.find(params[:github_login])
+      m = Afterburner::Medals.find(params[:medal_id])
+
+      if form.failed? || u.nil? || m.nil?
+        session[:error] = 'Something went wrong.'
+      else
+        u.decorations.create(medal: m, user: u)
+
+        session[:message] = "#{m.name} awarded to #{u.name}."
+      end
+
+      redirect '/medals/decorate'
+    end
+
     post '/admin/permissions' do
       require!("permissions_create")
 
@@ -130,19 +152,6 @@ module Afterburner
         Permission.create(:slug => params[:slug],
                           :name => params[:name])
       end
-    end
-
-    post '/medals/decorate/:github_login/:medal_id' do
-      require!("medals_decorate")
-
-      m = Afterburner::Medals.find(params[:medal_id])
-      u = Afterburner::Users.find(params[:github_login])
-
-      # TODO: error check
-      u.decorations.create(medal: m,
-                           user: u)
-
-      redirect '/profile/' + params[:github_login]
     end
 
     get '/admin/users' do
