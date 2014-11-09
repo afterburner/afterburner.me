@@ -3,6 +3,7 @@ require 'sinatra_auth_github'
 require 'uri'
 require 'mongoid'
 require 'sinatra/formkeeper'
+require 'sinatra/flash'
 
 require_relative 'afterburner/model'
 require_relative 'afterburner/users'
@@ -125,18 +126,18 @@ module Afterburner
         field :medal_id, :present => true
       end
       if form.failed? || u.nil? || m.nil?
-        session[:error] = 'Something went wrong.'
+        flash[:error] = 'Something went wrong.'
       end
 
       u = Afterburner::Users.find(params[:github_login])
       m = Afterburner::Medals.find(params[:medal_id])
 
       if form.failed? || u.nil? || m.nil?
-        session[:error] = 'Something went wrong.'
+        flash[:error] = 'Something went wrong.'
       else
         u.decorations.create(medal: m, user: u)
 
-        session[:message] = "#{m.name} awarded to #{u.name}."
+        flash[:message] = "\"#{m.name}\" awarded to #{u.name}."
       end
 
       redirect '/medals/decorate'
