@@ -1,26 +1,59 @@
-<div style="height:80px; width: 100%; background-color: #2c2c2c; position: absolute;"></div>
-<section class="pagetitle">
-  <!-- BEGIN: ABOUT TITLE -->
-  <div class="section-title row text-center">
-
-    <h2><%= @profile_user.name %></h2>
+<div class="page-header">
+  <h1>
     <%= @profile_user.github_login %>
-    <div class="divider-grey"></div>
+    <% if @profile_user.type == :mentor %>
+      <a href="#" data-toggle="tooltip" title="This user is a mentor." data-placement="right"><small><span class="glyphicon glyphicon-star"></span></small></a>
+    <% end %>
+    <% if @profile_user.type == :admin %>
+      <a href="#" data-toggle="tooltip" title="This user is an admin." data-placement="right"><small><span class="glyphicon glyphicon-star-empty"></span></small></a>
+    <% end %>
+  </h1>
+</div>
 
-    <h3>Medals</h3>
+<h3>Medals</h3>
+<p class="lead">Win medals by accomplishing tasks and meeting milestones. Each medal you win gets you closer to the top of the leaderboard.</p>
+<div class="row">
+  <div class="col-md-8">
+    <ul class="clearfix" style="padding: 0; list-style: none">
     <% for m in Afterburner::Medals.awarded_to(@profile_user) do %>
-      <div>
-        <img src="/images/medals/<%= if m[:count] > 0
-                        m[:medal].image
-                      else
-                        m[:medal].image_disabled
-                      end %>"/>
-        <div><%= m[:medal].name %> <span><%= ("&#215;" + m[:count].to_s) if m[:count] > 0 %></span></div>
-      <% end %>
-
-    <p>T-Shirt Size: <%= @profile_user.t_shirt_size %></p>
+      <% secret = (m[:medal].secret == true && m[:count] == 0) %>
+      <li data-toggle="tooltip" title="<%= secret ? "Shh. This medal is secret. You'll just have to work hard and keep your fingers crossed." : m[:medal].description %>" style="width: 22%; margin-right: 3px; margin-bottom: 3px; float: left; text-align: center; background-color: #f9f9f9; height: 120px; padding: 20px; overflow: hidden; position: relative">
+        <% if m[:count] > 0 %>
+          <span class="badge" style="position: absolute; right: 20px; top: 20px;">&#215;<%= m[:count].to_s %></span>
+        <% end %>
+        <span class="icon ion-ribbon-a" style="font-size: 250%;
+          <%= if m[:count] == 0
+            "color: \#ddd"
+          end %>">
+        </span>
+        <div style="<%= secret ? "color: \#ddd" : "" %>">
+          <% if secret %>
+            ...
+          <% else %>
+            <%= m[:medal].name %>
+          <% end %><br/>
+          <%= m[:medal].points.to_s %> pts
+          </div>
+      </li>
+    <% end %>
+    </ul>
   </div>
+  <div class="col-md-4" style="border-left: 1px solid #ddd; height: 120px;">
+    <span class="h1"><%= @profile_user.points %><br/></span>
+    <span class="h2" style="line-height: .5em"><small>points</small></span>
+  </div>
+</div>
 
-  <div style="height: 90px">&nbsp;</div>
-  <!-- END -->
-</section>
+<% if @user && @user.github_login == @profile_user.github_login %>
+<div class="panel panel-default" style="margin-top: 2em">
+  <div class="panel-heading">
+    <h3 class="panel-title">Private Profile</h3>
+    <small>Visible only by Afterburner admins and mentors.</small>
+  </div>
+  <div class="panel-body">
+    Name: <%= @user.name %><br/>
+    Email: <%= @user.email %><br/>
+    T-Shirt Size: <%= @user.t_shirt_size %>
+  </div>
+</div>
+<% end %>

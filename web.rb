@@ -72,7 +72,7 @@ module Afterburner
       unless @profile_user
         redirect '/'
       end
-      erb :profile
+      erb :profile, :layout => :alt_layout
     end
 
     def current_application
