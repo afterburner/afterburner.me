@@ -43,6 +43,8 @@ GEM
     sinatra (1.1.0)
       rack (~> 1.1)
       tilt (~> 1.1)
+    sinatra-flash (0.3.0)
+      sinatra (>= 1.0.0)
     sinatra-formkeeper (0.0.7)
       formkeeper (~> 0.0.12)
       hpricot
@@ -68,5 +70,6 @@ DEPENDENCIES
   pry
   pry-remote
   sinatra (= 1.1.0)
+  sinatra-flash
   sinatra-formkeeper
   sinatra_auth_github
