@@ -114,7 +114,7 @@ module Afterburner
       @users = Afterburner::Users.all
       @medals = Afterburner::Medals.all
 
-      erb :decorate
+      erb :decorate, :layout => :alt_layout
     end
 
     post '/medals/decorate' do
