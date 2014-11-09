@@ -124,6 +124,9 @@ module Afterburner
         field :github_login, :present => true
         field :medal_id, :present => true
       end
+      if form.failed? || u.nil? || m.nil?
+        session[:error] = 'Something went wrong.'
+      end
 
       u = Afterburner::Users.find(params[:github_login])
       m = Afterburner::Medals.find(params[:medal_id])
