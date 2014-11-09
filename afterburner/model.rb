@@ -16,6 +16,10 @@ module Afterburner
       has_many :applications
       has_and_belongs_to_many :permissions, inverse_of: nil
       has_many :decorations
+
+      def has_permission?(p)
+        return self.permissions.where(slug: p).exists?
+      end
     end
 
     class Session
