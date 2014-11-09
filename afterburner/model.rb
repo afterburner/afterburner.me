@@ -20,6 +20,14 @@ module Afterburner
       def has_permission?(p)
         return self.permissions.where(slug: p).exists?
       end
+
+      def points
+        points = 0
+        for d in self.decorations
+          points += d.medal.points
+        end
+        return points
+      end
     end
 
     class Session
