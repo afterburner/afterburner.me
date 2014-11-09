@@ -193,6 +193,25 @@ module Afterburner
       end
     end
 
+    get '/leaderboard' do
+      users = Afterburner::Users.all
+      @cadet_leaders = []
+
+      # TODO: cache these in memory for a while
+      users.each { |u|
+        points = 0
+        for d in u.decorations
+          points += d.medal.points
+        end
+        @cadet_leaders << { points: points, user: u }
+      }
+
+      @cadet_leaders.sort! { |a,b|
+        b[:points] <=> a[:points]
+      }
+      erb :leaderboard, :layout => :alt_layout
+    end
+
     def require!(*args)
       authenticate!
 
