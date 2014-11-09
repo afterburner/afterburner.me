@@ -24,6 +24,14 @@ module Afterburner
       :callback_url => ENV['GITHUB_OAUTH_CALLBACK'],
     }
 
+    before do
+      if github_user && github_user.login
+        @user = Afterburner::Users.find(github_user.login)
+      else
+        @user = nil
+      end
+    end
+
     get '/' do
       erb :index
     end
@@ -216,7 +224,6 @@ module Afterburner
     def require!(*args)
       authenticate!
 
-      @user = Afterburner::Users.find(github_user.login)
       unless @user
         redirect '/'
       end
