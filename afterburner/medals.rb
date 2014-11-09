@@ -27,7 +27,7 @@ module Afterburner
           awarded[n][:count] = awarded[n][:count] + 1
         end
       end
-      for m in self.all_public
+      for m in self.all
         if awarded[m.id].nil?
           awarded[m.id] = {}
           awarded[m.id][:medal] = m
