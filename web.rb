@@ -113,6 +113,11 @@ module Afterburner
       redirect '/'
     end
 
+    get '/auth/login' do
+      authenticate!
+      redirect '/'
+    end
+
     get '/apply/thanks' do
       erb :apply_thanks
     end
