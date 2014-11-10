@@ -1,0 +1,45 @@
+<div class="page-header">
+  <h1>Tips</h1>
+</div>
+<p class="lead">Knowledge is the way to go from hacker to engineer.</p>
+
+<%
+t_small_diffs = 1
+t_defensive = 2
+%>
+
+<!--   ==    -->
+<a name="<%= t_small_diffs %>"></a>
+<h2>Prefer Small Pull Requests<small>Tip #<%= t_small_diffs %></small></h2>
+<p>Changes are better when they come in small pieces:</p>
+<ul>
+  <li>Easier to review by your team members.</li>
+  <li>Easier to track down root causes of bugs when you have each change isolated
+    in its own commit.</li>
+</ul>
+<!--   ==    -->
+
+
+<!--   ==    -->
+<a name="<%= t_defensive %>"></a>
+<h2>Program Defensively <small>Tip #<%= t_defensive %></small></h2>
+
+<pre>
+  [myUserObject setObject:fbUser[@"email"] forKey:@"email"];
+</pre>
+<p>
+  Here's a line of code that's likely to appear while parsing some Facebook
+  user dictionary and storing the components in some local object, <code>myUserObject</code>.
+  This code causes a crash if the <code>fbUser</code> doesn't have an object
+  set for the <code>@"email"</code> key, which is a likely scenario due to
+  privacy settings, or even just having a bug in the <code>fbUser</code> dictionary.
+</p>
+<pre>
+  [myUserObject setObject:(fbUser[@"email"] ?: [NSNull null]) forKey:@"email"];
+</pre>
+<p>
+  The proper choice here is either to check for <code>nil</code> on <code>fbUser[@"email"]</code>
+  and insert an <code>NSNull</code> (as we do above) or don't set the <code>@"email"</code> key on
+  <code>myUserObject</code> at all in that case.
+</p>
+<!--   ==    -->

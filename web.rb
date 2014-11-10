@@ -230,6 +230,10 @@ module Afterburner
       erb :leaderboard, :layout => :alt_layout
     end
 
+    get '/tips' do
+      erb :tips, :layout => :alt_layout
+    end
+
     def require!(*args)
       authenticate!
 
