@@ -12,10 +12,11 @@
   </thead>
   <tbody>
     <% @cadet_leaders.each_with_index do |c, index| %>
+      <% url = "/profile/#{c[:user].github_login}" %>
       <% if c[:points] > 0 %>
         <tr>
           <td><%= index + 1 %></td>
-          <td><%= c[:user].github_login %></td>
+          <td><a href="<%= url %>"><%= c[:user].github_login %></a></td>
           <td><%= c[:points] %></td>
         </tr>
       <% end %>
