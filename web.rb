@@ -176,7 +176,7 @@ module Afterburner
 
       @users = Afterburner::Users.all
       @permissions = Permission.all
-      erb :admin_users
+      erb :admin_users, :layout => :alt_layout
     end
 
     post '/admin/user' do
@@ -185,11 +185,12 @@ module Afterburner
       form do
         field :name, :present => true
         field :github_login, :present => true
-        field :email, :present => true
+        field :email, :present => true, :email => true
         field :t_shirt_size, :present => true
         field :type, :present => true
       end
       if form.failed?
+        flash[:error] = "Something when wrong. Check the form and try again."
         redirect '/admin/users'
       else
         perms = []
@@ -203,6 +204,9 @@ module Afterburner
                                       type: params[:type],
                                       permissions: perms)
 
+        # TODO: check for errors here
+
+        flash[:message] = "User #{u.github_login}/#{u.name} successfully created."
         redirect '/admin/users'
       end
     end
