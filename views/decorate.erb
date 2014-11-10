@@ -3,10 +3,10 @@
 </div>
 
 <% if flash[:error] %>
-  <div class="alert alert-danger" role="alert"><%= session[:error] %></div>
+  <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
 <% end %>
 <% if flash[:message] %>
-  <div class="alert alert-success" role="alert"><%= session[:message] %></div>
+  <div class="alert alert-success" role="alert"><%= flash[:message] %></div>
 <% end %>
 
 <form role="form" method="POST" action="/medals/decorate">
