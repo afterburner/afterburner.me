@@ -1,16 +1,18 @@
 <div class="page-header">
   <h1>Tips</h1>
 </div>
-<p class="lead">Knowledge is the way to go from hacker to engineer.</p>
+<p class="lead">Knowledge to take you from hacker to engineer.</p>
 
 <%
 t_small_diffs = 1
 t_defensive = 2
+t_comments = 3
+t_contint = 4
 %>
 
 <!--   ==    -->
 <a name="<%= t_small_diffs %>"></a>
-<h2>Prefer Small Pull Requests<small>Tip #<%= t_small_diffs %></small></h2>
+<h2>Prefer Small Pull Requests <small>Tip #<%= t_small_diffs %></small></h2>
 <p>Changes are better when they come in small pieces:</p>
 <ul>
   <li>Easier to review by your team members.</li>
@@ -42,4 +44,14 @@ t_defensive = 2
   and insert an <code>NSNull</code> (as we do above) or don't set the <code>@"email"</code> key on
   <code>myUserObject</code> at all in that case.
 </p>
+<!--   ==    -->
+
+<!--   ==    -->
+<a name="<%= t_comments %>"></a>
+<h2>Don't Comment Out Code <small>Tip #<%= t_comments %></small></h2>
+<!--   ==    -->
+
+<!--   ==    -->
+<a name="<%= t_contint %>"></a>
+<h2>Use Continuous Integration <small>Tip #<%= t_contint %></small></h2>
 <!--   ==    -->
