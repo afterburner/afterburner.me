@@ -2,6 +2,31 @@ html, body {
   height: 100%;
 }
 
+header.front-header {
+  height: 300px;
+}
+
+header.front-header .jumbotron {
+  height: 100%;
+  width: 100%;
+  background-image: url('/images/wings-bg.jpeg');
+  background-position: 50% 30%;
+  background-size: cover;
+  padding: 2em;
+  color: white;
+  position: relative;
+}
+
+header.front-header .jumbotron div {
+  position: absolute;
+  bottom: 2em;
+}
+
+header.front-header h1,
+header.front-header p {
+  bottom-margin: 0px;
+}
+
 #content {
   min-height: 100%;
   margin-bottom: -8em;

@@ -5,53 +5,54 @@
   </head>
   <body>
     <%= erb :navigation, :layout => false %>
-    <header style="height: 300px;">
-      <div style="height: 100%; width: 100%; background-image: url('images/wings-bg.jpeg'); background-position: 50% 30%; background-size: cover;"></div>
+    <header class="front-header">
+      <div class="jumbotron">
+        <div>
+          <h1>Afterburner</h1>
+          <p>Training tomorrow's software engineers.</p>
+        </div>
+      </div>
     </header>
 
     <div id="content">
       <div class="container">
         <div class="row">
-          <h2 class="text-center">About Us</h2>
+          <div class="col-sm-12 text-center">
+            <h2>About Us</h2>
+          </div>
 
-          <div class="container text-center">
-            <div class="col-md-4">
+          <div class="container">
+            <div class="col-sm-4">
               <div class="text-center">
                 <span class="glyphicons fire" style="font-size: 4em"></span>
               </div>
 
-              <div class="text-center">
-                <h4>What is Afterburner?</h4>
-                <p>Afterburner is a mentoring program, guiding talented young
-                software developers through the ins and outs of building battle-ready,
-                enterprise-level code.</p>
-              </div>
+              <h4>What is Afterburner?</h4>
+              <p>Afterburner is a mentoring program, guiding talented young
+              software developers through the ins and outs of building battle-ready,
+              enterprise-level code.</p>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <div class="text-center">
                 <span class="glyphicons blacksmith" style="font-size: 4em"></span>
               </div>
 
-              <div class="text-center">
-                <h4>How does it work?</h4>
-                <p>Cadets work on their own projects, under the mentorship of an
-                experienced software developer. Mentors provide
-                input on best practices, architecture and most critically, code
-                review at each step of the project.</p>
-              </div>
+              <h4>How does it work?</h4>
+              <p>Cadets work on their own projects, under the mentorship of an
+              experienced software developer. Mentors provide
+              input on best practices, architecture and most critically, code
+              review at each step of the project.</p>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <div class="text-center">
                 <span class="glyphicons parents" style="font-size: 4em"></span>
               </div>
 
-              <div class="text-center">
-                <h4>How do I get involved?</h4>
-                <p>Stay tuned! We're running our Fall Pilot program now and will
-                be accepting applications for our Winter Pilot sometime around January.</p>
-              </div>
+              <h4>How do I get involved?</h4>
+              <p>Stay tuned! We're running our Fall Pilot program now and will
+              be accepting applications for our Winter Pilot sometime around January.</p>
             </div>
           </div>
         </div>
