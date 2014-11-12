@@ -138,7 +138,7 @@ module Afterburner
         field :github_login, :present => true
         field :medal_id, :present => true
       end
-      if form.failed? || u.nil? || m.nil?
+      if form.failed?
         flash[:error] = 'Something went wrong.'
       end
 
