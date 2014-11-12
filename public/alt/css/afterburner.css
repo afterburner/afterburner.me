@@ -1,0 +1,32 @@
+html, body {
+  height: 100%;
+}
+
+#content {
+  min-height: 100%;
+  margin-bottom: -8em;
+}
+
+#content:after {
+  content: "";
+  display: block;
+  height: 2em
+}
+
+footer, #content:after {
+  height: 8em;
+}
+
+footer {
+  border-top: 1px solid #e7e7e7;
+  background-color: #f8f8f8;
+}
+
+footer, footer a {
+  text-decoration: none;
+  color: #777;
+}
+
+footer .container {
+  padding-top: 2em;
+}
