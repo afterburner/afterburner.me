@@ -1,0 +1,50 @@
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ab-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Afterburner</a>
+        </div>
+        <div class="collapse navbar-collapse" id="ab-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/leaderboard">Leaderboard</a></li>
+            <li><a href="/tips">Tips</a></li>
+            <% if @user && (@user.type == :mentor || @user.type == :admin) %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mentor <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="/medals/decorate">Decorate</a></li>
+              </ul>
+            </li>
+            <% end %>
+            <% if @user && @user.has_permission?('users_view') %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="/admin/users">Manage Users</a></li>
+              </ul>
+            </li>
+            <% end %>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <% if @user %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= @user.name %> (<%= @user.github_login %>) <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="/profile/<%= @user.github_login %>">Profile</a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+              </ul>
+            </li>
+            <% else %>
+            <li><a href="/auth/login">Login</a></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
