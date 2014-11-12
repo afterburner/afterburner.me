@@ -72,7 +72,7 @@ module Afterburner
       unless @profile_user
         redirect '/'
       end
-      erb :profile, :layout => :alt_layout
+      erb :profile
     end
 
     def current_application
@@ -128,7 +128,7 @@ module Afterburner
       @users = Afterburner::Users.all
       @medals = Afterburner::Medals.all
 
-      erb :decorate, :layout => :alt_layout
+      erb :decorate
     end
 
     post '/medals/decorate' do
@@ -176,7 +176,7 @@ module Afterburner
 
       @users = Afterburner::Users.all
       @permissions = Permission.all
-      erb :admin_users, :layout => :alt_layout
+      erb :admin_users
     end
 
     post '/admin/user' do
@@ -227,11 +227,11 @@ module Afterburner
       @cadet_leaders.sort! { |a,b|
         b[:points] <=> a[:points]
       }
-      erb :leaderboard, :layout => :alt_layout
+      erb :leaderboard
     end
 
     get '/tips' do
-      erb :tips, :layout => :alt_layout
+      erb :tips
     end
 
     def require!(*args)
