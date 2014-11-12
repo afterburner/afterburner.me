@@ -234,6 +234,10 @@ module Afterburner
       erb :tips
     end
 
+    get '/contribute' do
+      erb :contribute
+    end
+
     def require!(*args)
       authenticate!
 
