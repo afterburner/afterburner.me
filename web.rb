@@ -33,7 +33,7 @@ module Afterburner
     end
 
     get '/' do
-      erb :index
+      erb :index, :layout => false
     end
 
     get '/signup' do

@@ -1,146 +1,62 @@
-    <!-- BEGIN: HOME SLIDE -->      
-    <section id="home" class="nav-sections">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= erb :header, :layout => false %>
+  </head>
+  <body>
+    <%= erb :navigation, :layout => false %>
+    <header style="height: 300px;">
+      <div style="height: 100%; width: 100%; background-image: url('images/wings-bg.jpeg'); background-position: 50% 30%; background-size: cover;"></div>
+    </header>
 
-    <div class="tp-banner-container">
-      <div class="tp-banner" >
-        <ul>
-          <li data-transition="fade" data-slotamount="5" data-masterspeed="700" >
+    <div id="content">
+      <div class="container">
+        <div class="row">
+          <h2 class="text-center">About Us</h2>
 
-            <!-- MAIN IMAGE -->
-            <img src="images/wings-bg.jpeg" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+          <div class="container text-center">
+            <div class="col-md-4">
+              <div class="text-center">
+                <span class="glyphicons fire" style="font-size: 4em"></span>
+              </div>
 
-            <div class="tp-caption large_bold_white_15 text-center customin customout start tp-resizeme"
-              data-x="right"
-              data-y="bottom"
-              data-voffset="-10"
-              data-hoffset="0"
-              data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
-              data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-              data-speed="1000"
-              data-start="1000"
-              data-easing="Back.easeInOut"
-              data-endspeed="300">AFTERBURNER
+              <div class="text-center">
+                <h4>What is Afterburner?</h4>
+                <p>Afterburner is a mentoring program, guiding talented young
+                software developers through the ins and outs of building battle-ready,
+                enterprise-level code.</p>
+              </div>
             </div>
-            
-            <div class="tp-caption lfb large_text text-right customin customout tp-resizeme"
-              data-x="right"
-              data-y="bottom"
-              data-hoffset="0"
-              data-voffset="80"
-              data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
-              data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-              data-speed="1000"
-              data-start="1500"
-              data-easing="Back.easeInOut"
-              style="z-index: 6">TRAINING <b>TOMORROW'S</b><br/>SOFTWARE ENGINEERS
-            </div>
-            
- <!--           <div class="tp-caption lfb"
-              data-x="center"
-              data-hoffset="0"
-              data-y="440"
-              data-speed="1000"
-              data-start="1800"
-              data-easing="Power4.easeOut"
-              data-endspeed="300"
-              data-endeasing="Power1.easeIn"
-              data-captionhidden="off"
-              style="z-index: 6">
-              <a class="nav-to des-button-white des-button-white-1 des-button-white-1d bt1" href="#about"><span>ABOUT US</span></a>
-            </div>
-            
-							<div class="tp-caption lfb"
-              data-x="center"
-              data-hoffset="85"
-              data-y="350"
-              data-speed="1000"
-              data-start="2000"
-              data-easing="Power4.easeOut"
-              data-endspeed="300"
-              data-endeasing="Power1.easeIn"
-              data-captionhidden="off"
-              style="z-index: 6">
-              <a class="nav-to des-button-white des-button-white-1 des-button-white-1d bt2" href="#getinvolved"><span>GET INVOLVED</span></a>
-            </div>-->
-  
-          </li>
-          
-        </ul>
 
+            <div class="col-md-4">
+              <div class="text-center">
+                <span class="glyphicons blacksmith" style="font-size: 4em"></span>
+              </div>
+
+              <div class="text-center">
+                <h4>How does it work?</h4>
+                <p>Cadets work on their own projects, under the mentorship of an
+                experienced software developer. Mentors provide
+                input on best practices, architecture and most critically, code
+                review at each step of the project.</p>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="text-center">
+                <span class="glyphicons parents" style="font-size: 4em"></span>
+              </div>
+
+              <div class="text-center">
+                <h4>How do I get involved?</h4>
+                <p>Stay tuned! We're running our Fall Pilot program now and will
+                be accepting applications for our Winter Pilot sometime around January.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    
-    </section>
-		<!-- END HOME SLIDE -->
-
-		<!-- BEGIN: ABOUT SECTION -->
-		<section id="about" class="nav-sections light-section nav-sections dark-text">
-
-				<!-- BEGIN: ABOUT TITLE --> 
-		    <div class="section-title small-padding row text-center">
-          <div class="divider-vertical"></div>
-          <h2>ABOUT US</h2>
-        </div>
-        <!-- END -->
-
-      <div class="container text-center">
-
-        <div class="section-third left">
-          <div class="text-center">
-            <i class="glyphicons fire" style="font-size: 4em"></i>
-          </div>
-
-          <div class="text-center">
-            <h4>What is Afterburner?</h4>
-            <p>Afterburner is a mentoring program, guiding talented young
-            software developers through the ins and outs of building battle-ready,
-            enterprise-level code.</p>
-          </div>
-        </div>
-
-        <div class="section-third middle">
-          <div class="text-center">
-            <i class="glyphicons blacksmith" style="font-size: 4em"></i>
-          </div>
-
-          <div class="text-center">
-            <h4>How does it work?</h4>
-            <p>Cadets work on their own projects, under the mentorship of an
-            experienced software developer. Mentors provide
-            input on best practices, architecture and most critically, code
-            review at each step of the project.</p>
-          </div>
-        </div>
-
-        <div class="section-third right">
-          <div class="text-center">
-            <i class="glyphicons parents" style="font-size: 4em"></i>
-          </div>
-
-          <div class="text-center">
-            <h4>How do I get involved?</h4>
-            <p>Afterburner is accepting applications for a Fall 2014 Pilot Program. <a href="/apply">Learn more</a>.</p>
-          </div>
-        </div>
-
-      </div>
-
-		</section>
-		<!-- END: ABOUT SECTION -->
-
-<!--    <!-- BEGIN: GET INVOLVED SECTION - ->
-		<section id="getinvolved" class="nav-sections dark-section nav-sections light-text">
-
-				<!-- BEGIN: GET INVOLVED TITLE - -> 
-		    <div class="section-title small-padding row text-center">
-          <div class="divider-vertical light-text"></div>
-          <h2 class="light-text">GET INVOLVED</h2>
-        </div>
-        <!-- END - ->
-
-      <div class="container">
-      </div>
-
-		</section>
-		<!-- END: GET INVOLVED SECTION - ->
-    -->
+    <%= erb :footer, :layout => false %>
+  </body>
+</html>
