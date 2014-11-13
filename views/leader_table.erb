@@ -11,7 +11,7 @@
       <% url = "/profile/#{u[:user].github_login}" %>
       <% if u[:points] > 0 %>
         <tr>
-          <td><%= index + 1 %></td>
+          <td><%= index + 1 unless index > 0 && u[:points] == users[index - 1][:points] %></td>
           <td><a href="<%= url %>"><%= u[:user].github_login %></a></td>
           <td><%= u[:points] %></td>
         </tr>
