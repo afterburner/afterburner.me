@@ -4,6 +4,7 @@ require 'uri'
 require 'mongoid'
 require 'sinatra/formkeeper'
 require 'sinatra/flash'
+require 'github_api'
 
 require_relative 'afterburner/model'
 require_relative 'afterburner/users'
@@ -72,6 +73,11 @@ module Afterburner
       unless @profile_user
         redirect '/'
       end
+      # TODO: cache this
+      github = Github.new(client_id: ENV['GITHUB_CLIENT_ID'],
+                          client_secret: ENV['GITHUB_CLIENT_SECRET'])
+      @profile_user_github = github.users.get(user: @profile_user.github_login)
+
       erb :profile
     end
 
