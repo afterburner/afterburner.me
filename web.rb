@@ -232,8 +232,10 @@ module Afterburner
         redirect '/admin/users'
       else
         perms = []
-        for perm_slug in params[:permissions] do
-          perms << Permission.where(slug: perm_slug).first
+        if params[:permissions]
+          for perm_slug in params[:permissions] do
+            perms << Permission.where(slug: perm_slug).first
+          end
         end
         u = Afterburner::Users.create(github_login: params[:github_login],
                                       name: params[:name],
