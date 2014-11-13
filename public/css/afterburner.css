@@ -24,7 +24,7 @@ header.front-header .jumbotron div {
 
 header.front-header h1,
 header.front-header p {
-  bottom-margin: 0px;
+  margin-bottom: 0px;
 }
 
 #content {
