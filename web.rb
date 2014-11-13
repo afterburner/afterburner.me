@@ -174,7 +174,7 @@ module Afterburner
     get '/admin/medals' do
       require!("medals_view")
 
-      @medals = Afterburner::Medals.all
+      @medals = Afterburner::Medals.all.sort { |a,b| a.sort_key <=> b.sort_key }
       erb :admin_medals
     end
 
