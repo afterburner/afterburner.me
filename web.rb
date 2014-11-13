@@ -255,6 +255,10 @@ module Afterburner
 
       # TODO: cache these in memory for a while
       users.each { |u|
+        if (u.type != :cadet)
+          next
+        end
+
         points = 0
         for d in u.decorations
           points += d.medal.points
