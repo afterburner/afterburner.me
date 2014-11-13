@@ -17,8 +17,12 @@ module Afterburner
       has_and_belongs_to_many :permissions, inverse_of: nil
       has_many :decorations
 
-      def has_permission?(p)
-        return self.permissions.where(slug: p).exists?
+      def has_permission?(*perms)
+        b = false
+        for p in perms
+          b |= self.permissions.where(slug: p).exists?
+        end
+        return b
       end
 
       def points
