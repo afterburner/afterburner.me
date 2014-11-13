@@ -1,0 +1,21 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Github</th>
+      <th>Points</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.each_with_index do |u, index| %>
+      <% url = "/profile/#{u[:user].github_login}" %>
+      <% if u[:points] > 0 %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><a href="<%= url %>"><%= u[:user].github_login %></a></td>
+          <td><%= u[:points] %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
