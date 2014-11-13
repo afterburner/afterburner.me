@@ -72,9 +72,9 @@
   <tbody>
     <% for u in @users %>
       <tr>
-        <td><%= u.name %></td>
+        <td><a href="/profile/<%= u.github_login %>"><%= u.name %></a></td>
         <td><%= u.type %></td>
-        <td><%= u.github_login %></td>
+        <td><a href="https://github.com/<%= u.github_login %>"><%= u.github_login %></a></td>
         <td><%= u.email %></td>
         <td>
           <% for p in u.permissions %>
