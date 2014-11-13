@@ -26,7 +26,7 @@
         <div class="radio">
           <label>
             <input type="radio" name="medal_id" id="medal_id" value="<%= m.id %>"> <%= m.name %>
-            <span class="help-block"><%= m.description %></span>
+            <span class="help-block"><%= m.description %> (<%= m.points.to_s %> pts)</span>
           </label>
         </div>
     <% end %>
