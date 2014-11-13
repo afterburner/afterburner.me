@@ -22,7 +22,7 @@
 <div class="row">
   <div class="col-sm-8">
     <ul class="clearfix" style="padding: 0; list-style: none">
-    <% for m in Afterburner::Medals.awarded_to(@profile_user) do %>
+    <% for m in Afterburner::Medal.awarded_to(@profile_user) do %>
       <% secret = (m[:medal].secret == true && m[:count] == 0) %>
       <li data-toggle="tooltip" title="<%= secret ? "Shh. This medal is secret. You'll just have to work hard and keep your fingers crossed." : m[:medal].description %>" style="min-width: 22%; margin-right: 3px; margin-bottom: 3px; float: left; text-align: center; background-color: #f9f9f9; min-height: 120px; padding: 20px; position: relative">
         <% if m[:count] > 0 %>

@@ -1,12 +1,7 @@
 module Afterburner
-  class Medals
-
+  class Medal
     def self.find(id)
       Medal.where(id: id).first
-    end
-
-    def self.all
-      Medal.all
     end
 
     def self.all_public
@@ -36,6 +31,5 @@ module Afterburner
       end
       return awarded.values.sort { |a,b| a[:medal].sort_key <=> b[:medal].sort_key }
     end
-
   end
 end

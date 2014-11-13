@@ -8,7 +8,7 @@ require 'github_api'
 
 require_relative 'afterburner/model'
 require_relative 'afterburner/user'
-require_relative 'afterburner/medals'
+require_relative 'afterburner/medal'
 
 Mongoid.load!("mongoid.yml")
 
@@ -132,7 +132,7 @@ module Afterburner
       require!("medals_decorate")
 
       @users = User.all
-      @medals = Afterburner::Medals.all
+      @medals = Medal.all
 
       erb :decorate
     end
@@ -149,7 +149,7 @@ module Afterburner
       end
 
       u = User.find(params[:github_login])
-      m = Afterburner::Medals.find(params[:medal_id])
+      m = Medal.find(params[:medal_id])
 
       if form.failed? || u.nil? || m.nil?
         flash[:error] = 'Something went wrong.'
@@ -180,7 +180,7 @@ module Afterburner
     get '/admin/medals' do
       require!("medals_view")
 
-      @medals = Afterburner::Medals.all.sort { |a,b| a.sort_key <=> b.sort_key }
+      @medals = Medal.all.sort { |a,b| a.sort_key <=> b.sort_key }
       erb :admin_medals
     end
 
