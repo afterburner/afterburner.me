@@ -1,0 +1,69 @@
+<div class="page-header">
+  <h1>Manage Medals</h1>
+</div>
+
+<h3>Add Medal</h3>
+<% if flash[:error] %>
+  <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+<% end %>
+<% if flash[:message] %>
+  <div class="alert alert-success" role="alert"><%= flash[:message] %></div>
+<% end %>
+
+<form role="form" method="POST" action="/admin/medal">
+  <div class="form-group">
+    <label for="name" class="sr-only">Name</label>
+    <input class="form-control" id="name" name="name" placeholder="Name">
+  </div>
+  <div class="form-group">
+    <label for="description" class="sr-only">Description</label>
+    <input class="form-control" id="description" name="description" placeholder="Description">
+  </div>
+  <div class="form-group">
+    <label for="points" class="sr-only">Points</label>
+    <input class="form-control" id="points" name="points" placeholder="Points">
+  </div>
+  <div class="form-group">
+    <label for="image" class="sr-only">Image URL</label>
+    <input class="form-control" id="image" name="image" placeholder="Image URL">
+  </div>
+  <div class="form-group">
+    <label for="image_disabled" class="sr-only">Disabled Image URL</label>
+    <input class="form-control" id="image_disabled" name="image_disabled" placeholder="Disabled Image URL">
+  </div>
+  <div class="form-group">
+    <label for="sort_key" class="sr-only">Sort Key</label>
+    <input class="form-control" id="sort_key" name="sort_key" placeholder="Sort Key">
+  </div>
+  <div class="form-group">
+    <div class="checkbox">
+      <label><input type="checkbox" name="secret" id="secret" value="on"> Secret</label>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Add Medal</button>
+</form>
+
+<h3>All Medals</h3>
+<table class="table table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Points</th>
+      <th>Description</th>
+      <th>Sort Key</th>
+      <th>Secret</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for m in @medals %>
+      <tr>
+        <td><%= m.name %></td>
+        <td><%= m.points %></td>
+        <td><%= m.description %></td>
+        <td><%= m.sort_key %></td>
+        <td><%= m.secret %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
