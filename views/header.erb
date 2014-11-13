@@ -1,7 +1,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="images/favicon.ico">
-  <title>AFTERBURNER | Training Tomorrow's Software Engineers</title>
+  <title><%= @title + " | " if @title %>AFTERBURNER<%= " | Training Tomorrow's Software Engineers" unless @title %></title>
 
   <script src="/js/jquery.min.js" type="text/javascript"></script>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
