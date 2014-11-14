@@ -5,12 +5,15 @@ require 'mongoid'
 require 'sinatra/formkeeper'
 require 'sinatra/flash'
 require 'github_api'
+require 'dalli'
 
 require_relative 'afterburner/model'
 require_relative 'afterburner/user'
 require_relative 'afterburner/medal'
 
 Mongoid.load!("mongoid.yml")
+
+set :cache, Dalli::Client.new
 
 module Afterburner
   class Website < Sinatra::Application
@@ -24,6 +27,7 @@ module Afterburner
       :client_id    => ENV['GITHUB_CLIENT_ID'],
       :callback_url => ENV['GITHUB_OAUTH_CALLBACK'],
     }
+
 
     before do
       if github_user && github_user.login
@@ -73,10 +77,14 @@ module Afterburner
       unless @profile_user
         redirect '/'
       end
-      # TODO: cache this
-      github = Github.new(client_id: ENV['GITHUB_CLIENT_ID'],
-                          client_secret: ENV['GITHUB_CLIENT_SECRET'])
-      @profile_user_github = github.users.get(user: @profile_user.github_login)
+      key = @profile_user.github_login + ":github"
+      @profile_user_github ||= settings.cache.fetch(key) do
+        github = Github.new(client_id: ENV['GITHUB_CLIENT_ID'],
+                            client_secret: ENV['GITHUB_CLIENT_SECRET'])
+        u = github.users.get(user: @profile_user.github_login).to_hash
+        settings.cache.set(key, u, 60*60*3)
+        return u
+      end
 
       erb :profile
     end

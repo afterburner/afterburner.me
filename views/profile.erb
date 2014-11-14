@@ -2,8 +2,8 @@
 <div class="page-header">
   <h1>
     <img alt="Profile Avatar" class="img-circle" style="width: 1.5em" src="<%=
-    if @profile_user_github && @profile_user_github[:avatar_url]
-      @profile_user_github[:avatar_url]
+    if @profile_user_github && @profile_user_github.has_key?("avatar_url")
+      @profile_user_github["avatar_url"]
     else
       "http://placehold.it/300&text=%20"
     end %>">
