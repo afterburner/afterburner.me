@@ -89,7 +89,7 @@ module Afterburner
                             client_secret: ENV['GITHUB_CLIENT_SECRET'])
         u = github.users.get(user: @profile_user.github_login).to_hash
         settings.cache.set(key, u, 60*60*3)
-        return u
+        u
       end
 
       erb :profile
