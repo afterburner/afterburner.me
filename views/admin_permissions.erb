@@ -1,0 +1,47 @@
+<% @title = "Manage Permissions" %>
+<div class="page-header">
+  <h1>Manage Permissions</h1>
+</div>
+
+<% if @user.has_permission?('permissions_create') %>
+<h3>Add Permission</h3>
+<% if flash[:error] %>
+  <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+<% end %>
+<% if flash[:message] %>
+  <div class="alert alert-success" role="alert"><%= flash[:message] %></div>
+<% end %>
+
+<form role="form" method="POST" action="/admin/permission">
+  <div class="form-group <%= "has-error" if form.failed_on?(:name) %>">
+    <label for="name" class="sr-only">Name</label>
+    <input class="form-control" id="name" name="name" placeholder="Name" type="text">
+  </div>
+  <div class="form-group <%= "has-error" if form.failed_on?(:slug) %>">
+    <label for="slug" class="sr-only">Slug</label>
+    <input class="form-control" id="slug" name="slug" placeholder="Slug" type=""text>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Add Permission</button>
+</form>
+<% end %>
+
+<% if @user.has_permission?('permissions_view') %>
+<h3>All Permissions</h3>
+<table class="table table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Slug</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for p in @permissions %>
+      <tr>
+        <td><%= p.name %></td>
+        <td><%= p.slug %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

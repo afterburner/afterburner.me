@@ -32,6 +32,9 @@
                 <% if @user && @user.has_permission?('users_view') %>
                   <li><a href="/admin/users">Manage Users</a></li>
                 <% end %>
+                <% if @user && @user.has_permission?('permissions_view') %>
+                  <li><a href="/admin/permissions">Manage Permissions</a></li>
+                <% end %>
                 <% if @user && @user.has_permission?('medals_view') %>
                   <li><a href="/admin/medals">Manage Medals</a></li>
                 <% end %>

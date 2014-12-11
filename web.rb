@@ -11,6 +11,7 @@ require 'memcachier'
 require_relative 'afterburner/model'
 require_relative 'afterburner/user'
 require_relative 'afterburner/medal'
+require_relative 'routes/admin/permissions'
 
 Mongoid.load!("mongoid.yml")
 
