@@ -17,6 +17,13 @@
   </h1>
 </div>
 
+<% if flash[:error] %>
+  <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+<% end %>
+<% if flash[:message] %>
+  <div class="alert alert-success" role="alert"><%= flash[:message] %></div>
+<% end %>
+
 <h3>Medals</h3>
 <p class="lead">Win medals by accomplishing tasks and meeting milestones. Each medal you win gets you closer to the top of the leaderboard.</p>
 <div class="row">
@@ -53,16 +60,73 @@
   </div>
 </div>
 
-<% if @user && @user.github_login == @profile_user.github_login %>
+<% grant_permission = @user && (@user.has_permission?("permissions_grant"))  %>
+<% edit_permission = @user && (grant_permission || @user.github_login == @profile_user.github_login || @user.has_permission?("users_update")) %>
+<% view_permission = @user && (edit_permission || @user.type == :mentor) %>
+
+<% if view_permission %>
 <div class="panel panel-default" style="margin-top: 2em">
   <div class="panel-heading">
     <h3 class="panel-title">Private Profile</h3>
     <small>Visible only by Afterburner admins and mentors.</small>
   </div>
   <div class="panel-body">
-    Name: <%= @user.name %><br/>
-    Email: <%= @user.email %><br/>
-    T-Shirt Size: <%= @user.t_shirt_size %>
+    <form role="form" method="POST" action="/profile/<%= @profile_user.github_login %>">
+      <div class="form-group <%= "has-error" if form.failed_on?(:name) %>">
+        <label for="name">Name</label>
+        <% if edit_permission %>
+          <input class="form-control" id="name" name="name" placeholder="Name" value="<%= @profile_user.name %>" type="text">
+        <% else %>
+          <input class="form-control" value="<%= @profile_user.name %>" disabled="disabled" type="text">
+        <% end%>
+      </div>
+      <div class="form-group <%= "has-error" if form.failed_on?(:email) %>">
+        <label for="email">Email</label>
+        <% if edit_permission %>
+          <input class="form-control" id="email" name="email" placeholder="Email" value="<%= @profile_user.email %>" type="email">
+        <% else %>
+          <input class="form-control" value="<%= @profile_user.email %>" disabled="disabled" type="email">
+        <% end%>
+      </div>
+      <div class="form-group <%= "has-error" if form.failed_on?(:t_shirt_size) %>">
+        <label for="t_shirt_size">T-Shirt Size</label>
+        <% if edit_permission %>
+          <% ["S", "M", "L" ,"XL", "XXL"].each do |size| %>
+            <div class="radio">
+              <label><input type="radio" name="t_shirt_size" id="t_shirt_size" value="<%= size %>" <%= "checked" if @profile_user.t_shirt_size == size %>/>&nbsp;<%= size %></label>
+            </div>
+          <% end %>
+        <% else %>
+          <label><%= @profile_user.t_shirt_size %></label>
+        <% end %>
+      </div>
+      <% if @user.has_permission?("permissions_grant") %>
+        <div class="form-group <%= "has-error" if form.failed_on?(:type) %>">
+          <label for="type">Type</label>
+          <div class="radio">
+            <label><input type="radio" name="type" id="type" value="cadet" <%= "checked=\"checked\"" if @profile_user.type == :cadet %>> Cadet</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="type" id="type" value="mentor" <%= "checked=\"checked\"" if @profile_user.type == :mentor %>> Mentor</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="type" id="type" value="admin" <%= "checked=\"checked\"" if @profile_user.type == :admin %>> Admin</label>
+          </div>
+        </div>
+        <div class="form-group <%= "has-error" if form.failed_on?(:permissions) %>">
+          <label for="permissions">Manage Permissions</label>
+          <% for perm in @permissions do %>
+            <div class="checkbox">
+              <label><input type="checkbox" name="permissions[]" id="permissions[]" value="<%= perm.slug %>" <%= "checked=\"checked\"" if @profile_user.has_permission?(perm.slug) %>> <%= perm.name %></label>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if edit_permission %>
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+      <% end %>
+    </form>
   </div>
 </div>
 <% end %>
