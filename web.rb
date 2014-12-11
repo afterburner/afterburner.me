@@ -17,6 +17,7 @@ require_relative 'routes/admin/medals'
 require_relative 'routes/apply'
 require_relative 'routes/medals'
 require_relative 'routes/leaderboard'
+require_relative 'routes/profile'
 
 Mongoid.load!("mongoid.yml")
 
@@ -48,23 +49,6 @@ module Afterburner
       erb :index, :layout => false
     end
 
-    get '/profile/:github_login' do
-      @profile_user = User.find(params[:github_login])
-      unless @profile_user
-        redirect '/'
-      end
-      key = @profile_user.github_login + ":github"
-      @profile_user_github ||= settings.cache.fetch(key) do
-        github = Github.new(client_id: ENV['GITHUB_CLIENT_ID'],
-                            client_secret: ENV['GITHUB_CLIENT_SECRET'])
-        u = github.users.get(user: @profile_user.github_login).to_hash
-        settings.cache.set(key, u, 60*60*3)
-        u
-      end
-
-      erb :profile
-    end
-
     get '/auth/logout' do
       logout!
       redirect '/'
@@ -77,29 +61,6 @@ module Afterburner
 
     get '/how-to-apply' do
       erb :how_to_apply
-    end
-
-    get '/leaderboard' do
-      users = User.all
-      @cadet_leaders = []
-      @mentor_leaders = []
-
-      # TODO: cache these in memory for a while
-      users.each { |u|
-        points = 0
-        for d in u.decorations
-          points += d.medal.points
-        end
-        if (u.type == :cadet)
-          @cadet_leaders << { points: points, user: u }
-        else
-          @mentor_leaders << { points: points, user: u }
-        end
-      }
-
-      @cadet_leaders.sort! { |a,b| b[:points] <=> a[:points] }
-      @mentor_leaders.sort! { |a,b| b[:points] <=> a[:points] }
-      erb :leaderboard
     end
 
     get '/tips' do
