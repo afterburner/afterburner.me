@@ -3,6 +3,13 @@
   <h1>Manage Applications</h1>
 </div>
 
+<% if flash[:error] %>
+  <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+<% end %>
+<% if flash[:message] %>
+  <div class="alert alert-success" role="alert"><%= flash[:message] %></div>
+<% end %>
+
 <% if @user.has_permission?('applications_view') %>
 <% @applications.each { |hash|
   session = hash[:session]
@@ -17,16 +24,25 @@
         <th>Email</th>
         <th>Repo</th>
         <th>Project</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
       <% for a in applications %>
-        <tr>
+        <tr class="<%= "bg-success" if a.status == :accepted %> <%= "bg-danger" if a.status == :rejected %>">
           <td><a href="/profile/<%= a.user.github_login %>"><%= a.user.name %></a></td>
           <td><a href="https://github.com/<%= a.user.github_login %>"><%= a.user.github_login %></a></td>
           <td><%= a.user.email %></td>
           <td><a href="https://github.com/<%= a.repo %>"><%= a.repo %></td>
           <td><%= a.project_description %></td>
+          <td>
+            <form role="form_accept" method="POST" action="/admin/application/<%= a.id %>/accepted" style="display: inline">
+              <button type="submit" class="btn-link" style="margin: 0; padding: 0;">&#x25B2;</button>
+            </form>
+            <form role="form_reject" method="POST" action="/admin/application/<%= a.id %>/rejected" style="display: inline">
+              <button type="submit" class="btn-link" style="margin: 0; padding: 0;">&#x25BC;</button>
+            </form>
+          </td>
         </tr>
       <% end %>
     </tbody>
