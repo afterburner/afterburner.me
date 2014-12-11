@@ -26,7 +26,6 @@ module Afterburner
     field :end, type: Time
     field :apply_start, type: Time
     field :apply_end, type: Time
-    has_one :challenge
     has_many :applications
   end
 
@@ -48,14 +47,6 @@ module Afterburner
     include Mongoid::Timestamps
     belongs_to :user
     belongs_to :medal
-  end
-
-  class Challenge
-    include Mongoid::Document
-    include Mongoid::Timestamps
-    field :slug, type: String
-    field :name, type: String
-    belongs_to :session
   end
 
   class Application
