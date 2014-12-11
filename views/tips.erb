@@ -1,6 +1,6 @@
 <% @title = "Tips" %>
 <div class="page-header">
-  <h1>Tips</h1>
+<h1>Tips</h1>
 </div>
 <p class="lead">Knowledge to take you from hacker to engineer.</p>
 
@@ -10,6 +10,7 @@ t_defensive = 2
 t_comments = 3
 t_contint = 4
 t_mvc = 5
+t_delegates = 6
 %>
 
 <!--   ==    -->
@@ -23,11 +24,9 @@ t_mvc = 5
 </ul>
 <!--   ==    -->
 
-
 <!--   ==    -->
 <a name="<%= t_defensive %>"></a>
 <h2>Program Defensively <small>Tip #<%= t_defensive %></small></h2>
-
 <pre>
   [myUserObject setObject:fbUser[@"email"] forKey:@"email"];
 </pre>
@@ -61,7 +60,74 @@ t_mvc = 5
 <!--   ==    -->
 
 <!--   ==    -->
-<a name="<%= t_contint %>"></a>
+<a name="<%= t_mvc %>"></a>
 <h2>Model-View-Controller <small>Tip #<%= t_mvc %></small></h2>
-<p>I'll find something to put here.</p>
+<h3>Keep Views Dumb:</h3>
+<hr>
+<ul>
+  <li>Keeping views seperate from models and controllers is part of the Model View
+    Controller design patter. By separating views from models and controllers,
+    it's much easier to reuse the specific view in any situation.</li>
+    <li>One of the best ways to communicate actions from a view to controller is to use
+      delegation. Check out "Use Delegation for 1:1 Communication" to get started with the
+      delegate pattern.</li>
+</ul>
+<!--   ==    -->
+
+<!--   ==    -->
+<a name="<%= t_delegates %>"></a>
+<h2>Use Delegation for 1:1 Communication <small>Tip #<%= t_delegates %></small></h2>
+<p>
+  Using Delegates allows objects to communicate with eachother. However, the class
+  containing the delegate, doesn't have to know about the class it's communicating
+  with.
+</p>
+<p>
+  When creating a Delegate start in the <code>.h</code> file above the
+  <code>@interface</code>:
+</p>
+<pre>
+  @protocol CustomDelegate &lt;NSObject&#62;
+  -(void) methodToCall;
+  @end
+</pre>
+<p>
+  And declare a delegate property below the <code>@interface</code>:
+</p>
+<pre>
+  @property (nonatomic, strong) id &lt;CustomDelegate&#62; delegate;
+</pre>
+<p>
+  In the <code>.h</code> file you create the delegate &lt;CustomDelegate&#62;. Then you define the
+  methods you want to call. Then create a property named 'delegate.'
+  Next in the <code>.m</code> file:
+</p>
+<pre>
+  //Whenever you want to call the delegate method
+  [self.delegate methodToCall];
+</pre>
+<p>
+  Now in the class that you want notified when that method is called:
+</p>
+<pre>
+  #import ClassContainingDelegate.h
+
+  @interface UIViewControllerSubclass () &lt;CustomDelegate&#62;{
+    ClassContainingDelegate *_class;
+  }
+</pre>
+<p>
+  Then after initializing the class, set it's delegate to self:
+</p>
+<pre>
+  _class.delegate = self;
+</pre>
+<p>
+  Finally, add the delegate method:
+</p>
+<pre>
+  -(void) methodToCall {
+    //This method will be called from the UIViewSubclass
+  }
+</pre>
 <!--   ==    -->
