@@ -48,11 +48,13 @@
                 <li><a href="/auth/logout">Logout</a></li>
               </ul>
             </li>
-            <% elsif github_user == nil %>
+            <% elsif github_user %>
             <% # The application page has an intermediate state where there's
                # a github user but no @user. Don't display the login item then.
              %>
-            <li><a href="/auth/login">Login</a></li>
+              <li><a href="/auth/logout">Logout</a></li>
+            <% else %>
+              <li><a href="/auth/login">Login</a></li>
             <% end %>
           </ul>
         </div>
