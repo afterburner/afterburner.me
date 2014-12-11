@@ -4,6 +4,7 @@ module Afterburner
       require!("permissions_view")
 
       @permissions = Permission.all
+      @permissions = @permissions.sort { |a,b| a.slug <=> b.slug }
 
       erb :admin_permissions
     end
@@ -20,6 +21,7 @@ module Afterburner
         flash.now[:error] = "Something went wrong creating this permission."
 
         @permissions = Permission.all
+        @permissions = @permissions.sort { |a,b| a.slug <=> b.slug }
         output = erb :admin_permissions
         fill_in_form(output)
       else

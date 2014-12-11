@@ -15,6 +15,7 @@ module Afterburner
       end
 
       @permissions = Permission.all
+      @permissions = @permissions.sort { |a,b| a.slug <=> b.slug }
 
       erb :profile
     end
