@@ -60,7 +60,7 @@ module Afterburner
       erb :profile
     end
 
-    get '/howtoapply' do
+    get '/how-to-apply' do
       erb :how_to_apply
     end
 

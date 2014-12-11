@@ -54,7 +54,7 @@
   </div>
   <div class="form-group <%= "has-error" if form.failed_on?(:repo) %>">
     <label for="repo">Challenge Solution</label>
-    <p class="help-block">Select the repository containing your code for the <a href="/howtoapply#challenge">challenge problem</a>.<br/>
+    <p class="help-block">Select the repository containing your code for the <a href="/how-to-apply#challenge">challenge problem</a>.<br/>
     Before submitting, make sure your application builds and runs from a clean checkout!</p>
     <% repos = github_user.api.repositories %>
     <% repos.each do |r| %>
