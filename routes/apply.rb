@@ -44,6 +44,7 @@ module Afterburner
         Application.create(user: @user,
                            repo: form[:repo],
                            project_description: form[:project_description],
+                           status: :pending,
                            session: s)
 
         redirect '/apply/thanks'

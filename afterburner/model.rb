@@ -63,6 +63,7 @@ module Afterburner
     include Mongoid::Timestamps
     field :repo, type: String
     field :project_description, type: String
+    field :status, type: Symbol
     belongs_to :user
     belongs_to :session
   end
