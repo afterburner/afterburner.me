@@ -29,6 +29,7 @@
     </thead>
     <tbody>
       <% for a in applications %>
+        <% if a.user %>
         <tr class="<%= "bg-success" if a.status == :accepted %> <%= "bg-danger" if a.status == :rejected %>">
           <td><a href="/profile/<%= a.user.github_login %>"><%= a.user.name %></a></td>
           <td><a href="https://github.com/<%= a.user.github_login %>"><%= a.user.github_login %></a></td>
@@ -44,6 +45,11 @@
             </form>
           </td>
         </tr>
+        <% else %>
+          <tr class="bg-warning">
+            <td colspan="6" class="text-center">Application #<%= a.id %> corrupted. No user?</td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
