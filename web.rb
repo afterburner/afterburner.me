@@ -16,6 +16,7 @@ require_relative 'routes/admin/users'
 require_relative 'routes/admin/medals'
 require_relative 'routes/apply'
 require_relative 'routes/medals'
+require_relative 'routes/leaderboard'
 
 Mongoid.load!("mongoid.yml")
 
