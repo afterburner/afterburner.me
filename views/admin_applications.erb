@@ -1,0 +1,35 @@
+<% @title = "Manage Applications" %>
+<div class="page-header">
+  <h1>Manage Applications</h1>
+</div>
+
+<% if @user.has_permission?('applications_view') %>
+<% @applications.each { |hash|
+  session = hash[:session]
+  applications = hash[:applications]
+%>
+  <h3><%= session.name %></h3>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>GitHub</th>
+        <th>Email</th>
+        <th>Repo</th>
+        <th>Project</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for a in applications %>
+        <tr>
+          <td><a href="/profile/<%= a.user.github_login %>"><%= a.user.name %></a></td>
+          <td><a href="https://github.com/<%= a.user.github_login %>"><%= a.user.github_login %></a></td>
+          <td><%= a.user.email %></td>
+          <td><a href="https://github.com/<%= a.repo %>"><%= a.repo %></td>
+          <td><%= a.project_description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% } %>
+<% end %>
