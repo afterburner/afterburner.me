@@ -1,57 +1,71 @@
-<div style="height:80px; width: 100%; background-color: #2c2c2c; position: absolute;"></div>
-<section class="pagetitle">
-  <!-- BEGIN: ABOUT TITLE --> 
-  <div class="section-title row text-center">
+<% @title = "Apply to Afterburner" %>
+<div class="page-header">
+  <h1>Apply to Afterburner</h1>
+</div>
+<p class="lead">Spring Session: March 7th &ndash; May 30th<br/>Applications due February 14th</p>
 
-    <h2>APPLY TO AFTERBURNER</h2>
-    <div class="divider-grey"></div>
-    <div class="sub-title">FALL SESSION: SEPT 6th &ndash; NOV 22nd 2014<br>APPLICATIONS DUE JULY 15th</div>
+<% if flash[:error] %>
+  <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+<% end %>
+
+<form role="form" method="POST" action="/apply/2015-Q1">
+  <div class="form-group <%= "has-error" if form.failed_on?(:github_login) %>">
+    <label for="github_login">GitHub Login</label>
+    <input class="form-control" value="<%= github_user.login %>" disabled="disabled">
   </div>
-  <!-- END -->
-</section>
-
-<!-- BEGIN BLOG 3 COLUMNS -->
-<section id="blog" class="blog-single light-section nopadding">
-  <!-- BEGIN CONTAINER -->
-  <div class="container single">
-
-    <!-- BEGIN SINGLE CONTENT COLUM -->
-    <div class="col-md-12">	
-
-      <!-- BEGIN BLOG POST -->
-      <div class="blog-post isotope-item">
-        <!-- BEGIN POST CONTENT -->
-        <div class="post-content">
-          <p>Thanks for your interest in Afterburner! Here are the details and application instructions for
-          our Fall 2014 Pilot Program:</p>
-          <p><strong>Who:</strong> High School students in the United States, including rising 9th graders, with at least some previous iOS development experience.</p>
-          <p><strong>When:</strong> Our first Afterburner session will run from Saturday,
-          September 6th to Saturday, November 22nd, 2014. <em>Applications are due July 15th.</em></p>
-          <p><strong>Where:</strong> Online! No traveling required! All you need is a
-          <a href="http://github.com">GitHub</a> account.</p>
-
-          <p><strong>How:</strong> To apply, follow these instructions:
-          <ul>
-            <li>Sign in below with your GitHub account. Don't have a GitHub account? <a href="http://github.com">Create one!</a></li>
-            <li>Write a description of an iOS project you want help with. It should be relatively sizable,
-            something that would take at least a few thousand lines of code.</li>
-            <li>Complete the challenge described on the application page, store your code in a GitHub repo and specify which repo on the form.</li>
-            <li>If we select your application for further consideration, we will contact you for a brief Skype/Google Hangout interview.</li>
-          </ul>
-          <div class="divider-grey"></div>
-
-          <div class="text-center">
-            <a class="des-button-dark des-button-dark-1 des-button-dark-1d" href="/apply/2014-Q3"><span><i class="fa fa-github" style="font-size: 200%"></i><br>Sign in with GitHub to Apply</span></a>
-
-            <br>
-            <p>Applications Due July 15th!</p>
-          </div>
+  <div class="form-group <%= "has-error" if form.failed_on?(:name) %>">
+    <label for="name">Name</label>
+    <% if @user %>
+      <input class="form-control" value="<%= @user.name%>" disabled="disabled">
+    <% else %>
+      <input class="form-control" name="name" id="name" placeholder="Name" type="text">
+    <% end %>
+  </div>
+  <div class="form-group <%= "has-error" if form.failed_on?(:email) %>">
+    <label for="email">Email</label>
+    <% if @user %>
+      <input class="form-control" value="<%= @user.email %>" disabled="disabled">
+    <% else %>
+      <input class="form-control" name="email" id="email" placeholder="Email" type="email">
+    <% end %>
+  </div>
+  <div class="form-group <%= "has-error" if form.failed_on?(:t_shirt_size) %>">
+    <label for="t_shirt_size">T-Shirt Size</label>
+    <% if @user %>
+      <div><%= @user.t_shirt_size %></div>
+    <% else %>
+      <% ["S", "M", "L" ,"XL", "XXL"].each do |size| %>
+        <div class="radio">
+          <label><input type="radio" name="t_shirt_size" id="t_shirt_size" value="<%= size %>"/>&nbsp;<%= size %></label>
         </div>
-        <!-- END POST CONENT -->
+      <% end %>
+    <% end %>
+  </div>
+  <div class="form-group <%= "has-error" if form.failed_on?(:project_description) %>">
+    <label for="project_description">Project Description</label>
+    <p class="help-block">Afterburner mentors work with you on an iOS project of your choice. Tell us about the app you'd like help building. What kind of app you ask? Any iOS app you've always wanted to build. :) Perhaps you want to build an app that...</p>
+    <ul class="help-block">
+      <li>...is the perfect side-scrolling platform game</li>
+      <li>...visualizes marching band patterns</li>
+      <li>...manages the value of your baseball card collection</li>
+      <li>...whatever you think you can build!</li>
+    </ul>
+    <textarea name="project_description" class="form-control" rows="6" placeholder="Type your project description" type="text"></textarea>
+  </div>
+  <div class="form-group <%= "has-error" if form.failed_on?(:repo) %>">
+    <label for="repo">Challenge Solution</label>
+    <p class="help-block">Select the repository containing your code for the <a href="/howtoapply#challenge">challenge problem</a>.<br/>
+    Before submitting, make sure your application builds and runs from a clean checkout!</p>
+    <% repos = github_user.api.repositories %>
+    <% repos.each do |r| %>
+      <div class="radio">
+        <label><input type="radio" name="repo" id="repo" value="<%= r[:full_name] %>"/>&nbsp;<%= r[:full_name] %></label>
       </div>
-      <!-- END BLOG POST -->
-    </div>	
-    <!-- END SINGLE CONTENT COLUMN -->
-  </div>	
-  <!-- END CONTAINER -->
-</section> 
+    <% end %>
+    <% if repos.empty? %>
+      <div class="alert alert-danger" role="alert">Looks like you have no GitHub repos. Create one to store your challenge solution then come back.</div>
+    <% end %>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Apply</button>
+</form>

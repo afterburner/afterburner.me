@@ -90,37 +90,62 @@ module Afterburner
       erb :profile
     end
 
-    def current_application
-      @repos = github_user.api.repositories
+    get '/howtoapply' do
+      erb :how_to_apply
+    end
 
-      erb :current
+    get '/apply' do
+      authenticate!
+
+      erb :apply
     end
 
     post '/apply/:session_slug' do
-      require!
+      authenticate!
 
       # Validate the session they're applying for.
       s = Session.where(slug: params[:session_slug]).first
       time = Time.now
       if s.nil? || time < s.apply_start || time > s.apply_end
-        current_application
+        flash[:error] = "Invalid session. Something's really wrong. Contact application@afterburner.me"
+        redirect '/apply'
       end
 
       # Validate the form input.
       form do
         field :repo, :present => true
         field :project_description, :present => true
+        if @user == nil
+          # They need to create a user as well.
+          field :name, :present => true, :filters => [ :strip ]
+          field :email, :present => true, :email => true, :filters => [ :strip, :downcase ]
+          field :t_shirt_size, :present => true, :regexp => %r{^(S|M|L|XL|XXL)$}
+        end
       end
+
       if form.failed?
-        current_application
+        flash.now[:error] = "Something when wrong. Check the form and try again."
+        output = erb :apply
+        fill_in_form(output)
       else
-        Application.create(github_login: github_user.login,
+        if @user == nil
+          @user = User.create(github_login: github_user.login,
+                              name: form[:name],
+                              email: form[:email],
+                              t_shirt_size: form[:t_shirt_size],
+                              type: :cadet)
+        end
+        Application.create(user: @user,
                            repo: form[:repo],
                            project_description: form[:project_description],
                            session: s)
 
         redirect '/apply/thanks'
       end
+    end
+
+    get '/apply/thanks' do
+      erb :apply_thanks
     end
 
     get '/auth/logout' do

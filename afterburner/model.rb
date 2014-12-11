@@ -61,7 +61,6 @@ module Afterburner
   class Application
     include Mongoid::Document
     include Mongoid::Timestamps
-    field :github_login, type: String
     field :repo, type: String
     field :project_description, type: String
     belongs_to :user
