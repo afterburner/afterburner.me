@@ -21,15 +21,13 @@ module Afterburner
       form do
         field :repo, :present => true
         field :project_description, :present => true
-        if @user == nil
-          # They need to create a user as well.
-          field :name, :present => true, :filters => [ :strip ]
-          field :email, :present => true, :email => true, :filters => [ :strip, :downcase ]
-          field :t_shirt_size, :present => true, :regexp => %r{^(S|M|L|XL|XXL)$}
-        end
+        field :name, :present => true, :filters => [ :strip ]
+        field :email, :present => true, :email => true, :filters => [ :strip, :downcase ]
+        field :t_shirt_size, :present => true, :regexp => %r{^(S|M|L|XL|XXL)$}
       end
 
       if form.failed?
+        p form
         flash.now[:error] = "Something when wrong. Check the form and try again."
         output = erb :apply
         fill_in_form(output)
