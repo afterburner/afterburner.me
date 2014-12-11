@@ -43,37 +43,6 @@ module Afterburner
       erb :index, :layout => false
     end
 
-    get '/signup' do
-      require!
-      erb :signup
-    end
-
-    post '/signup' do
-      require!
-
-      # Check for a user with this github login.
-      u = User.find(github_user.login)
-      if u
-        redirect '/profile/' + github_user.login
-      end
-
-      form do
-        field :name, :present => true
-        field :email, :present => true, :email => true
-      end
-      if form.failed?
-        erb :signup
-      else
-        u = User.create(github_login: github_user.login,
-                        name: params[:name],
-                        email: params[:email],
-                        t_shirt_size: params[:t_shirt_size],
-                        type: :cadet)
-
-        redirect '/profile/' + github_user.login
-      end
-    end
-
     get '/profile/:github_login' do
       @profile_user = User.find(params[:github_login])
       unless @profile_user
@@ -195,21 +164,6 @@ module Afterburner
       end
 
       redirect '/medals/decorate'
-    end
-
-    post '/admin/permissions' do
-      require!("permissions_create")
-
-      form do
-        field :slug, :present => true
-        field :name, :present => true
-      end
-      if form.failed?
-        redirect '/admin/permissions'
-      else
-        Permission.create(:slug => params[:slug],
-                          :name => params[:name])
-      end
     end
 
     get '/admin/medals' do
