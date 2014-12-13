@@ -76,6 +76,10 @@ module Afterburner
       erb :contribute
     end
 
+    get '/about' do
+      erb :about
+    end
+
     def require!(*args)
       authenticate!
 
