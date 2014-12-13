@@ -72,10 +72,6 @@ module Afterburner
       erb :how_to_apply
     end
 
-    get '/tips' do
-      erb :tips
-    end
-
     get '/contribute' do
       erb :contribute
     end
