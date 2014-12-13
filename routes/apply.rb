@@ -27,7 +27,6 @@ module Afterburner
       end
 
       if form.failed?
-        p form
         flash.now[:error] = "Something when wrong. Check the form and try again."
         output = erb :apply
         fill_in_form(output)
@@ -44,6 +43,14 @@ module Afterburner
                            project_description: form[:project_description],
                            status: :pending,
                            session: s)
+
+        mail = SendGrid::Mail.new do |m|
+          m.to = ENV['ADMINISTRATOR_EMAIL']
+          m.from = form[:email]
+          m.subject = "Application: #{ github_user.login } / #{ form[:name] }"
+          m.text = "Repo: #{ form[:repo] }\nDescription: #{ form[:project_description] }"
+        end
+        sendgrid.send(mail)
 
         redirect '/apply/thanks'
       end

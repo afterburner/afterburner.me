@@ -32,6 +32,7 @@ GEM
     jwt (1.0.0)
     memcachier (0.0.2)
     method_source (0.8.2)
+    mime-types (2.4.3)
     mini_portile (0.6.1)
     mongoid (3.1.6)
       activemodel (~> 3.2)
@@ -42,6 +43,7 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    netrc (0.10.0)
     nokogiri (1.6.4.1)
       mini_portile (~> 0.6.0)
     oauth2 (1.0.0)
@@ -61,9 +63,15 @@ GEM
       pry (~> 0.9)
       slop (~> 3.0)
     rack (1.5.2)
+    rest-client (1.7.2)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     sawyer (0.5.4)
       addressable (~> 2.3.5)
       faraday (~> 0.8, < 0.10)
+    sendgrid-ruby (0.0.3)
+      rest-client
+      smtpapi
     sinatra (1.1.0)
       rack (~> 1.1)
       tilt (~> 1.1)
@@ -78,6 +86,7 @@ GEM
       sinatra (~> 1.0)
       warden-github (~> 1.0)
     slop (3.5.0)
+    smtpapi (0.0.9)
     thread_safe (0.3.4)
     tilt (1.4.1)
     tzinfo (0.3.39)
@@ -97,6 +106,7 @@ DEPENDENCIES
   mongoid (~> 3.1.6)
   pry
   pry-remote
+  sendgrid-ruby
   sinatra (= 1.1.0)
   sinatra-flash
   sinatra-formkeeper

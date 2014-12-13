@@ -7,6 +7,7 @@ require 'sinatra/flash'
 require 'github_api'
 require 'dalli'
 require 'memcachier'
+require 'sendgrid-ruby'
 
 require_relative 'afterburner/model'
 require_relative 'afterburner/user'
@@ -36,6 +37,13 @@ module Afterburner
       :client_id    => ENV['GITHUB_CLIENT_ID'],
       :callback_url => ENV['GITHUB_OAUTH_CALLBACK'],
     }
+
+    def sendgrid
+      @sendgrid ||= SendGrid::Client.new do |c|
+        c.api_user = ENV['SENDGRID_USERNAME']
+        c.api_key = ENV['SENDGRID_PASSWORD']
+      end
+    end
 
 
     before do
