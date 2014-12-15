@@ -72,10 +72,6 @@ module Afterburner
       erb :how_to_apply
     end
 
-    get '/contribute' do
-      erb :contribute
-    end
-
     get '/about' do
       erb :about
     end
